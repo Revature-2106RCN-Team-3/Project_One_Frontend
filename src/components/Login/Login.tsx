@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from "react";
+import './Login.css';
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -24,21 +25,17 @@ const Login: React.FC = () => {
     }
 
     return(
-        <div className="container bg-dark">
-            <div className="row justify-content-around">
-                <div className="col-4">
-                    <img 
-                    src="../../images/logo_name.png" 
-                    className="img-fluid"
-                    alt="logo_name"
-                    ></img>
+        <div className="container-fluid bg-dark">
+            <div className="row">
+                <div className="col-6">
                 </div>
-                <div className="col-4">
+                <div className="col-6">
                     <h1>Social Justice Warriors</h1>
                     <form onSubmit={submitHandler}>
                         <div className="form-group mb-3">
                             <h3>Login</h3>
-                            <label htmlFor="username" className="form-label">Username
+                            <label htmlFor="username" className="form-label">
+                                <h5>Username</h5>
                             <input
                             className="form-control"
                             type="text"
@@ -49,7 +46,8 @@ const Login: React.FC = () => {
                             </label>
                         </div>
                         <div className="form-group mb-3">
-                            <label htmlFor="password" className="form-label">Password
+                            <label htmlFor="password" className="form-label">
+                                <h5>Password</h5>
                             <input
                             className="form-control"
                             type="text"
@@ -59,11 +57,13 @@ const Login: React.FC = () => {
                             />
                             </label>
                         </div>
+                        <br />
                         <div className="form-group">
                             <button className="btn btn-sm btn-light" type="submit">Submit</button>
                         </div>
+                        <br />
+                        <a href="/home/signup" className="link-primary">I don't have an account</a>
                     </form>
-                    <a href="/home/signup" className="link-primary">I don't have an account</a>
                 </div>
             </div>
         </div>
