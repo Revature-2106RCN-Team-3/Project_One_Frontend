@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Reggae+One&family=Roboto+Slab&display=swap');
+
 h1 h3 {
    font-family: 'Reggae One', cursive;
    background-color: white;
@@ -7,9 +8,4 @@ h1 h3 {
 p {
     font-family: 'Roboto Slab', serif;
     background-color: white;
-}
-
-form {
-    background-color:#cbd2d0;
-    padding: 50px;
 }

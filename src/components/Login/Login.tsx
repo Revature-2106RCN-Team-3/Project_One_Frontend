@@ -25,14 +25,13 @@ const Login: React.FC = () => {
     }
 
     return(
-        <div className="container-fluid bg-dark">
             <div className="row">
-                <div className="col-6">
-                </div>
-                <div className="col-6">
+                <div className="justify-content-center">
                     <h1>Social Justice Warriors</h1>
                     <form onSubmit={submitHandler}>
                         <div className="form-group mb-3">
+                            <br />
+                            <br />
                             <h3>Login</h3>
                             <label htmlFor="username" className="form-label">
                                 <h5>Username</h5>
@@ -66,7 +65,6 @@ const Login: React.FC = () => {
                     </form>
                 </div>
             </div>
-        </div>
     )
 }
 
