@@ -1,10 +1,14 @@
-import React from 'react'
+/* eslint-disable no-lone-blocks */
+import React from 'react';
+import Search from '../Search/Search';
 
-const Navbar: React.FC = () => {
+const Navigation: React.FC = () => {
     return(
         <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
             <div className="container-fluid">
-                <a href="/home" className="navbar-brand">SJW</a>
+                <a href="/home" className="navbar-brand">
+                    SJW
+                </a>
                 <button 
                 className="navbar-toggler" 
                 data-toggle="collapse" 
@@ -14,11 +18,8 @@ const Navbar: React.FC = () => {
                 aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarContent">                    
-                    <form className="d-flex">
-                        <input type="search" className="form-control me-2" placeholder="Search..." aria-label="Search" />
-                        <button className="btn btn-outline-light" type="submit">search</button>
-                    </form>
+                <div className="collapse navbar-collapse" id="navbarContent">
+                    <Search />                    
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <a href="/login" className="nav-link">Login</a>
@@ -29,8 +30,11 @@ const Navbar: React.FC = () => {
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> 
     );
 }
 
-export default Navbar;
+export default Navigation;
+
+    {/**
+*/}

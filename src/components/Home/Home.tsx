@@ -9,7 +9,7 @@ const Home: React.FC<IProps> = (props) => {
             <div className="row">
                 <Navbar />
             </div>
-            <div className="d-flex row bg-light">
+            <div className="row justify-content-center bg-light">
                 <Login />
             </div>
         </div>
