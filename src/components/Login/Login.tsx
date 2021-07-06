@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import './Login.css';
 
+
 const Login: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -25,6 +26,7 @@ const Login: React.FC = () => {
     }
 
     return(
+
             <div className="row">
                 <div className="justify-content-center">
                     <h1>Social Justice Warriors</h1>
@@ -45,6 +47,7 @@ const Login: React.FC = () => {
                             </label>
                         </div>
                         <div className="form-group mb-3">
+
                             <label htmlFor="password" className="form-label">
                                 <h5>Password</h5>
                             <input
@@ -56,6 +59,7 @@ const Login: React.FC = () => {
                             />
                             </label>
                         </div>
+
                         <br />
                         <div className="form-group">
                             <button className="btn btn-sm btn-light" type="submit">Submit</button>
