@@ -1,69 +1,40 @@
-import React, { useState } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-} from "reactstrap";
+/* eslint-disable no-lone-blocks */
+import React from 'react';
+import Search from '../Search/Search';
 
-import Login from "../Login/LoginTest";
+const Navigation: React.FC = () => {
+    return(
+        <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
+            <div className="container-fluid">
+                <a href="/home" className="navbar-brand">
+                    SJW
+                </a>
+                <button 
+                className="navbar-toggler" 
+                data-toggle="collapse" 
+                data-target="#navbarContent" 
+                aria-controls="navbarContent" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarContent">
+                    <Search />                    
+                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <a href="/login" className="nav-link">Login</a>
+                        </li>
+                        <li className="nav-item">
+                            <a href="/signup" role="button" className="btn btn-info">Sign Up</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav> 
+    );
+}
 
-const GeneralNavbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export default Navigation;
 
-  const toggle = () => setIsOpen(!isOpen);
-
-  return (
-    <div>
-    <Navbar color="dark" dark expand="md">
-      <NavbarBrand href="/">The Social Justice Warriors</NavbarBrand>
-      <NavbarToggler onClick={toggle} />
-      <Collapse isOpen={isOpen} navbar>
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <NavLink href="/components/">Components</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-          </NavItem>
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-              Options
-            </DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem>
-                Option 1
-              </DropdownItem>
-              <DropdownItem>
-                Option 2
-              </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>
-                Reset
-              </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
-        </Nav>
-        <Nav navbar className="ms-auto">
-            <Login/>
-          </Nav>
-      </Collapse>
-    </Navbar>
-  </div>
-  );
-};
-
-export default GeneralNavbar;
+    {/**
+*/}
