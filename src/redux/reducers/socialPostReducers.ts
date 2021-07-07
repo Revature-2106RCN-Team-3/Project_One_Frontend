@@ -1,12 +1,13 @@
-import { PostAction, IAppActions } from "./socialPostActions";
-import { IAppState, initialState } from "./socialPostStore";
+import { PostAction, IAppActions } from "../actions/socialPostActions";
+import { IAppState, initialState } from "../socialPost/socialPostStore";
+import {GetPosts} from "../../components/socialPost/socialPost"
 
 
 export const reducers = (state: IAppState = initialState, action: IAppActions): IAppState => {
     const newState = {...state};
     switch(action.type){
         case PostAction.ADD_POST:
-            newState.posts.push({userName: '', postId: '', parentPostId: '', postText: '', like: false, dislikes: false, mainPost: 1});
+            newState.posts.push(GetPosts);
             newState.editPostState.currentPost= newState.posts.length-1;
             newState.editPostState.edit=true;
             return newState;

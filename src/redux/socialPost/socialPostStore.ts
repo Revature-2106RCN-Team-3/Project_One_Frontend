@@ -18,22 +18,9 @@ export const initialState: IAppState = {
     },
     posts: [
         {
-            userName: "string",
-            postId: "string", // unique id tied to each post/comment/like/dislike
-            postText: "string",
-            parentPostId: "string", // this is used to identify parent post for comments
-            like: false,
-            dislikes: false,
-            mainPost: 0,
-        },
-        {
-            userName: "test",
-            postId: "string", // unique id tied to each post/comment/like/dislike
-            postText: "string",
-            parentPostId: "string", // this is used to identify parent post for comments
-            like: false,
-            dislikes: false,
-            mainPost: 0,
-        },
+            userName: "",
+            postId: "", // unique id tied to each post/comment/like/dislike
+            postText: "",
+        }
       ]
 }
