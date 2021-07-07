@@ -1,8 +1,9 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
 import Login from './components/Login/LoginTest';
 import GeneralNavbar from './components/NavBar/Navbar'
 import Slides from './components/generalComps/slides'
+
 
 function App() {
   return (

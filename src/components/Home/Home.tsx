@@ -1,5 +1,5 @@
 import Login from '../Login/Login';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../NavBar/Navbar';
 
 interface IProps {}
 
