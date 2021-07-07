@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from "react";
-{/*import { Link } from "react-router-dom";
-*/}
+import './Login.css';
+
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -26,13 +26,17 @@ const Login: React.FC = () => {
     }
 
     return(
-        <div className="container">
+
             <div className="row">
-                <div className="col">
-                    <h1>Social Justice Warriors!</h1>
+                <div className="justify-content-center">
+                    <h1>Social Justice Warriors</h1>
                     <form onSubmit={submitHandler}>
                         <div className="form-group mb-3">
-                            <label htmlFor="username" className="form-label">Username
+                            <br />
+                            <br />
+                            <h3>Login</h3>
+                            <label htmlFor="username" className="form-label">
+                                <h5>Username</h5>
                             <input
                             className="form-control"
                             type="text"
@@ -43,7 +47,9 @@ const Login: React.FC = () => {
                             </label>
                         </div>
                         <div className="form-group mb-3">
-                            <label htmlFor="password" className="form-label">Password
+
+                            <label htmlFor="password" className="form-label">
+                                <h5>Password</h5>
                             <input
                             className="form-control"
                             type="text"
@@ -53,22 +59,16 @@ const Login: React.FC = () => {
                             />
                             </label>
                         </div>
+
+                        <br />
                         <div className="form-group">
                             <button className="btn btn-sm btn-light" type="submit">Submit</button>
                         </div>
+                        <br />
+                        <a href="/home/signup" className="link-primary">I don't have an account</a>
                     </form>
-                    {/*
-                    <Link
-                        href="/signup"
-                        onClick={}
-                        to={}
-                    >
-                    I don't have an account
-                    </Link>
-                    */} 
                 </div>
             </div>
-        </div>
     )
 }
 
