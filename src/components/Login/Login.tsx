@@ -58,6 +58,8 @@ const Login: React.FC = () => {
                         <div className="form-group mb-3">
                             <label htmlFor="password" className="form-label">
                                 <h5>Password</h5>
+                        <div className="row g-3">
+                            <div className="col-11">
                             <input
                             className="form-control"
                             type={isPasswordVisible ? "text" : "password"}
@@ -68,7 +70,8 @@ const Login: React.FC = () => {
                             value={password}
                             required
                             />
-                            <div className="icon">
+                            </div>
+                            <div className="col-1">
                                 {isPasswordVisible ? (
                                     <i className="bi bi-eye-fill" 
                                     id="eye" 
@@ -80,6 +83,7 @@ const Login: React.FC = () => {
                                     onClick={() => setPasswordVisible(true)}
                                     ></i>
                                 )}
+                            </div>
                             </div>
                             </label>
                         </div>
