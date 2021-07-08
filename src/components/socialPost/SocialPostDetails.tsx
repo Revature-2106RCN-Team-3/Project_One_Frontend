@@ -13,20 +13,18 @@ const SocialPostDetails = () => {
     const {userName, postText, parentPostId, post_date_time, mainPost, like, dislike} = post;
     const dispatch= useDispatch();
     const fetchPostDetail = async (postId: string, userName: string) => {
-        const response = await axios({
-            method: 'GET',
-            url: "http://localhost:3000/api/home/post/",
-            data: {
-                userName: userName,
-                postId: postId
-            }
-        }).catch((err) => {
-        console.log("Err: ", err);
-        })
-        dispatch(selectedPost(response))
+        try{
+        const response = await axios
+        .get("http://localhost:3000/api/home/post/",{data: {userName: userName, postId: postId}})
+        dispatch(selectedPost(response.data))
+    } catch(err) {
+        console.log(err)
+    }
+
+        
     }
     useEffect(() =>{
-        if(socialPostId && socialPostId !== "") fetchPostDetail(socialPostUserName, socialPostId);
+        if(socialPostId && socialPostId !== "") fetchPostDetail(socialPostId);
         return() => {
             dispatch(removeSelectedPost());
         };

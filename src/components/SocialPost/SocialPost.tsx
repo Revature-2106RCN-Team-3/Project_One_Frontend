@@ -28,19 +28,20 @@ const SocialPostComponent = () => {
         dislike,
       } = post;
       return (
-        <div>
+        <div className="socialPost" key="postId">
+        <Link to={`/post/${postId}`}>
           <Card>
-            <CardHeader>Header</CardHeader>
+            <CardHeader>{userName}</CardHeader>
             <CardBody>
-              <CardTitle tag="h5">Special Title Treatment</CardTitle>
+              <CardTitle tag="h5">{post_date_time}</CardTitle>
               <CardText>
-                With supporting text below as a natural lead-in to additional
-                content.
+                {postText}
               </CardText>
-              <Button>Go somewhere</Button>
+              <Button>See Comments</Button>
             </CardBody>
-            <CardFooter>Footer</CardFooter>
+            <CardFooter></CardFooter>
           </Card>
+        </Link>
         </div>
       );
     }

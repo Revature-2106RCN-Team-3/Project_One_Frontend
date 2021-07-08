@@ -14,10 +14,10 @@ export const setPost = (posts) => {
     };
 };
 
-export const selectedPost = (posts: IPost) => {
+export const selectedPost = (postId: string) => {
     return{ 
         type: PostAction.SELECT_POST,
-        payload: posts,
+        payload: postId,
     };
 };
 

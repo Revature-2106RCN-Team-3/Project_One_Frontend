@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import { applyMiddleware, compose, createStore, Store } from 'redux';
 import { resourceLimits } from 'worker_threads';
-import reducers from "../reducers/index";
+import {reducers} from "../reducers/index";
 
 const store = createStore(
   reducers,

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { socialPostReducer, selectedPostReducer } from "./socialPostReducers";
-const reducers = combineReducers({
+export const reducers = combineReducers({
   allPosts: socialPostReducer,
   posts: selectedPostReducer,
 });
