@@ -1,6 +1,6 @@
 import peace from '../images/pics/peace.png';
 import logo_name from '../images/pics/logo_name.png';
-import people from '../images/pics/people.png'
+import safeSpace from '../images/pics/safeSpace.png'
 
 const Carousel: React.FC = () => {
     return (
@@ -13,7 +13,7 @@ const Carousel: React.FC = () => {
                     <img src={logo_name} className="d-block w-100" alt="logo_name" />
                 </div>
                 <div className="carousel-item">
-                    <img src={people} className="d-block w-100" alt="people" />
+                    <img src={safeSpace} className="d-block w-100" alt="people" />
                 </div>
             </div>
         </div>
