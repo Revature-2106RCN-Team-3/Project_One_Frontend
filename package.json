@@ -9,7 +9,6 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-
     "amazon-cognito-identity-js": "^5.0.3",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
@@ -25,6 +24,7 @@
     "web-vitals": "^1.1.2",
     "enzyme": "^3.11.0"
   },
+
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -39,14 +39,16 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/reactstrap": "^8.7.2",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
-    "@types/redux-thunk": "^2.1.0",
+    "@types/redux-thunk": "^2.1.0"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
   },
+
   "browserslist": {
     "production": [
       ">0.2%",

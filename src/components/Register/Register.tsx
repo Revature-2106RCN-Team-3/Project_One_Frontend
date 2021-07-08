@@ -48,15 +48,15 @@ const Register: React.FC = () => {
 
     return (
             <div className="row bg-dark">
-            <div className="col-6 ps-5 mt-5">
+            <div className="col-6 ps-5 mt-5 mb-5">
                 <Carousel />
             </div>
             <div className="col-6 pt-5 text-light">
                     <form className="text-center" onSubmit={submitHandler}>
                         <div className="form-group mb-2">
                             <h3>Register</h3>
-                            <div className="row pe-2">
-                                <div className="col">
+                            <div className="row justify-content-center pe-2">
+                                <div className="col-4">
                                     <label htmlFor="first_name" className="form-label">
                                     <h6>First Name</h6>
                                     <input
@@ -68,7 +68,7 @@ const Register: React.FC = () => {
                                     />
                                     </label>  
                                 </div>
-                                <div className="col">
+                                <div className="col-4">
                                 <label htmlFor="last_name" className="form-label">
                                     <h6>Last Name</h6>
                                     <input

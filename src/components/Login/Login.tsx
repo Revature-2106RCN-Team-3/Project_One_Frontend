@@ -31,7 +31,7 @@ const Login: React.FC = (props) => {
 
     return(
         <div className="row bg-dark">
-            <div className="col-6 ps-5 mt-5">
+            <div className="col-6 ps-5 mt-5 mb-5">
                 <Carousel />
             </div>
             <div className="col-6 justify-content-end mb-5 ps-5 text-light">
