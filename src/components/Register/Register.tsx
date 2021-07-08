@@ -10,6 +10,7 @@ const Register: React.FC = () => {
     const [nickname, setNickname] = useState('');
     const [first_name, setFirst] = useState('');
     const [last_name, setLast] = useState('');
+    const [isPasswordVisible, setPasswordVisible] = useState(false);
     const dispatch = useDispatch();
 
     const usernameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,8 +57,8 @@ const Register: React.FC = () => {
                         <div className="form-group mb-2">
                             <h1>Register</h1>
                             <br />
-                            <div className="row justify-content-center pe-2">
-                                <div className="col-4">
+                            <div className="row g-3 justify-content-center">
+                                <div className="col-5">
                                     <label htmlFor="first_name" className="form-label">
                                     <h6>First Name</h6>
                                     <input
@@ -69,7 +70,7 @@ const Register: React.FC = () => {
                                     />
                                     </label>  
                                 </div>
-                                <div className="col-4">
+                                <div className="col-5">
                                 <label htmlFor="last_name" className="form-label">
                                     <h6>Last Name</h6>
                                     <input
@@ -107,17 +108,38 @@ const Register: React.FC = () => {
                             />
                             </label>
                         </div>
-                        <div className="form-group mb-2">
+                        <div className="form-group mb-3">
                             <label htmlFor="password" className="form-label">
                                 <h6>Password</h6>
+                        <div className="row g-3">
+                            <div className="col-11">
                             <input
                             className="form-control"
-                            type="text"
+                            type={isPasswordVisible ? "text" : "password"}
                             id="password"
+                            autoComplete="current-password"
+                            aria-describedby="eye"
                             onChange={passwordChangeHandler}
+                            value={password}
                             required
                             />
+                            </div>
+                            <div className="col-1">
+                                {isPasswordVisible ? (
+                                    <i className="bi bi-eye-fill" 
+                                    id="eye" 
+                                    onClick={() => setPasswordVisible(false)}
+                                    ></i>
+                                ) : (
+                                    <i className="bi bi-eye-slash"
+                                    id="eye-slash"
+                                    onClick={() => setPasswordVisible(true)}
+                                    ></i>
+                                )}
+                            </div>
+                            </div>
                             </label>
+                        
                         </div>
                         <br />
                         <div className="form-group">
