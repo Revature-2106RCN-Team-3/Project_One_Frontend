@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { PublicRoute } from './routers';
-import Home from './components/Home/Home';
 import { useDispatch } from 'react-redux';
 import { checkAuthSess } from './api';
 import { loginSuccess } from './redux/actions/logRegAction';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Navbar from './components/Navigation/Navigation';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <main className="bg-dark">
     <Navbar />
         <Switch>
           <PublicRoute path='/signup' component={Register} />
@@ -35,7 +35,7 @@ function App() {
             render={(props:any) => <Login key={Date.now()} {...props} />}
           />
         </Switch>
-    </>
+    </main>
   );
 }
 
