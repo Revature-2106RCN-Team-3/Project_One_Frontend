@@ -7,6 +7,7 @@ import { loginSuccess } from './redux/actions/logRegAction';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Navbar from './components/Navigation/Navigation';
+import SocialPostList from './components/socialPost/SocialPostList';
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     <main className="bg-dark">
     <Navbar />
         <Switch>
+          <PublicRoute path='/posts' component={SocialPostList} />
           <PublicRoute path='/signup' component={Register} />
           <PublicRoute path='/login' component={Login} />
           <Route
