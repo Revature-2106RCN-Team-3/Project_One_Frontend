@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
+import { socialPostReducer, selectedPostReducer } from "./socialPostReducers";
 import loginRegReducer from './loginRegReducer'
 
-const reducers = combineReducers({
-    auth: loginRegReducer
+export const reducers = combineReducers({
+  allPosts: socialPostReducer,
+  posts: selectedPostReducer,
+  auth: loginRegReducer
 });
-
-export default reducers;
+export type RootState = ReturnType<typeof reducers>
