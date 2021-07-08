@@ -4,6 +4,7 @@ import loginRegReducer from './loginRegReducer'
 
 export const reducers = combineReducers({
   allPosts: socialPostReducer,
+  getComments: socialPostReducer,
   posts: selectedPostReducer,
   auth: loginRegReducer
 });

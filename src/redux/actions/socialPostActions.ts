@@ -11,6 +11,7 @@ export enum PostAction {
     LIKE_POST = 'LIKE_POST',
     DISLIKE_POST = 'DISLIKE_POST',
     REPORT_POST = 'REPORT_POST',
+    GET_COMMENTS = 'GET_COMMENTS',
 }
 
 export interface IPostActions {
@@ -26,6 +27,11 @@ export interface IAppActions extends IPostActions {
 export const setPost = (posts: IPost) => (<const>{
         type: PostAction.SET_POST,
         payload: posts,
+});
+
+export const getcomments = (posts: IPost) => (<const>{
+    type: PostAction.GET_COMMENTS,
+    payload: posts,
 });
 
 export const selectedPost = (postId: string) => {
