@@ -17,6 +17,8 @@ const testUser: IUser = {
     profile: "This is James here, call me Jimothy."
 }
 
+
+
 describe('<UserDataForm />', () => {
     const testForm = mount(<UserDataForm {...testUser}/>);
 
@@ -35,4 +37,7 @@ describe('<UserDataForm />', () => {
         expect(testForm.find(Input).findWhere((elem) => {return elem.getElement().props.disabled == false})).toHaveLength(14);
     })
     
+    it('should store date in the date field', () => {
+        testForm.find(Input).findWhere((elem) => {return elem.getElement().props.name == 'BirthDate'}).forEach((elem) => {expect(elem.getElement().props).toHaveProperty('value', '01/01/1900')});
+    })
 })
