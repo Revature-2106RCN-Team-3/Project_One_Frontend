@@ -1,10 +1,13 @@
 import React, { FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginStart } from '../../redux/actions/logRegAction';
 import './Login.css';
+import Carousel from "../carousel";
 
-
-const Login: React.FC = () => {
+const Login: React.FC = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
 
     const usernameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         //get rid of whitespaces
@@ -22,19 +25,22 @@ const Login: React.FC = () => {
 
         if(username && password) {
             //way to authenticate user to go to their dashboard
+            dispatch(loginStart(username, password));
         }
     }
 
     return(
-
-            <div className="row">
-                <div className="justify-content-center">
-                    <h1>Social Justice Warriors</h1>
-                    <form onSubmit={submitHandler}>
+        <div className="row bg-dark">
+            <div className="col-6 ps-5 mt-5">
+                <Carousel />
+            </div>
+            <div className="col-6 justify-content-end mb-5 ps-5 text-light">
+                    <form className="text-center" onSubmit={submitHandler}>
                         <div className="form-group mb-3">
                             <br />
                             <br />
                             <h3>Login</h3>
+                            <br />
                             <label htmlFor="username" className="form-label">
                                 <h5>Username</h5>
                             <input
@@ -59,15 +65,16 @@ const Login: React.FC = () => {
                             />
                             </label>
                         </div>
-
                         <br />
                         <div className="form-group">
-                            <button className="btn btn-sm btn-light" type="submit">Submit</button>
+                            <button className="btn btn-sm btn-primary" type="submit">Login</button>
                         </div>
                         <br />
-                        <a href="/home/signup" className="link-primary">I don't have an account</a>
+                        <a href="/signup" className="link-light">I don't have an account</a>
                     </form>
-                </div>
+                    <br />
+                    <p className="bg-dark text-muted text-center">&copy; Copyright 2021 Social Justice Warriors</p>
+                    </div>
             </div>
     )
 }
