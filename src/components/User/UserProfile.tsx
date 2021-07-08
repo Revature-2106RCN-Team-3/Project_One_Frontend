@@ -34,7 +34,7 @@ const UserDataForm = (user:IUser) => {
         <Form>
             <Row fluid="true">
                 <Col xs="2"><Label for="email" style={{color: "#ccc"}}>Profile Page</Label></Col>
-                <Col><Input plaintext value={userData.userName} disabled/></Col>
+                <Col><Input id="email" plaintext value={userData.userName} disabled/></Col>
                 <Col xs="1"><Button onClick={submitHandle}>{buttonText}</Button></Col>
             </Row>
             <Row>
