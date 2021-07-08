@@ -8,14 +8,14 @@ import { RootState } from "../../redux/reducers";
 
 //! add route for pulling individual parent post
 const SocialPostDetails = () => {
-    const {socialPostId} = useParams();
+    const socialPostId = useParams();
     let post = useSelector((state: RootState) => state.allPosts.posts);
     const {userName, postText, parentPostId, post_date_time, mainPost, like, dislike} = post;
     const dispatch= useDispatch();
     const fetchPostDetail = async (postId: string, userName: string) => {
         try{
         const response = await axios
-        .get("http://localhost:3000/api/home/post/",{data: {userName: userName, postId: postId}})
+        .get("http://localhost:3000/api/home/post/",{data: {userName: post.userName, postId: post.postId}})
         dispatch(selectedPost(response.data))
     } catch(err) {
         console.log(err)
