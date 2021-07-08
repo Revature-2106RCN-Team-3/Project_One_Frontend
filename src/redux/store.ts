@@ -16,12 +16,5 @@ const enhancer = composeEnhancers(
 );
 const store = createStore(reducers,{}, enhancer);
 
-
-// const store = createStore(
-//     reducers,
-//     {},
-//     applyMiddleware(thunk) + w.__REDUX_DEVTOOLS_EXTENSION__ && w.__REDUX_DEVTOOLS_EXTENSION__(),
-// )
-
 export default store;
 

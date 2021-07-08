@@ -49,7 +49,7 @@ const SocialPostComponent: React.FC = () => {
               <Card>
                 <CardHeader>{username}</CardHeader>
                 <CardBody>
-                  <CardTitle tag="h5">{post_date_time}</CardTitle>
+                  <CardTitle tag="h5">{date}</CardTitle>
                   <CardText>{post_text}</CardText>
                 </CardBody>
                 <CardFooter>
