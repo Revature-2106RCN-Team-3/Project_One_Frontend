@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { BrowserRouter as Router } from 'react-router-dom';
+import 'bootstrap-icons/font/bootstrap-icons.json';
+
 
 ReactDOM.render(
   <React.StrictMode>
