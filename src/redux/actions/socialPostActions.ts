@@ -1,30 +1,28 @@
 import { IPost } from "../../models/socialPostModel";
 import { PostAction } from "../constants/actionTypes";
 
-export const setPost = (props: IPost) => {
-    return{ 
-        type:PostAction.SET_POST,
-        payload: props,
-    };
-};
-
-
-
-
-
-
-
-
 
 export interface IPostActions {
     type: PostAction,
-    payload: {post:IPost}
+    payload: {posts: IPost}
 }
 
-export interface IAppActions extends IPostActions {
-    type: PostAction;
-    payload: {
-        post:IPost,
-        selection: number
-    }
-}
+export const setPost = (posts) => {
+    return{ 
+        type: PostAction.SET_POST,
+        payload: posts,
+    };
+};
+
+export const selectedPost = (posts: IPost) => {
+    return{ 
+        type: PostAction.SELECT_POST,
+        payload: posts,
+    };
+};
+
+export const removeSelectedPost = () => {
+    return{ 
+        type: PostAction.REMOVE_SELECTED_POST,
+    };
+};

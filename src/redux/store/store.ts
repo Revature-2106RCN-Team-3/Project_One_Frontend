@@ -1,6 +1,14 @@
 import { Dispatch } from 'react';
 import { applyMiddleware, compose, createStore, Store } from 'redux';
 import { resourceLimits } from 'worker_threads';
+import reducers from "../reducers/index";
+
+const store = createStore(
+  reducers,
+  {}
+);
+
+export default store;
 
 //persist data across sessions by using localStorage
 const localStorageMiddleware = (store: Store) => {
@@ -27,5 +35,3 @@ const populateStore = () => {
     }
     return undefined;
 }
-
-const 
