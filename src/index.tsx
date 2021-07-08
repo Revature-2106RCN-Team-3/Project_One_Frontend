@@ -4,6 +4,7 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import 'bootstrap-icons/font/bootstrap-icons.json';
 
 ReactDOM.render(
   <React.StrictMode>

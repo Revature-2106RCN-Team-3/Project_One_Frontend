@@ -54,7 +54,8 @@ const Register: React.FC = () => {
             <div className="col-6 pt-5 text-light">
                     <form className="text-center" onSubmit={submitHandler}>
                         <div className="form-group mb-2">
-                            <h3>Register</h3>
+                            <h1>Register</h1>
+                            <br />
                             <div className="row justify-content-center pe-2">
                                 <div className="col-4">
                                     <label htmlFor="first_name" className="form-label">
@@ -120,7 +121,7 @@ const Register: React.FC = () => {
                         </div>
                         <br />
                         <div className="form-group">
-                            <button className="btn btn-sm btn-primary" type="submit">Submit</button>
+                            <button className="btn btn-lg btn-outline-secondary" type="submit">Submit</button>
                         </div>
                         <br />
                         <a href="/login" className="link-light">I have an account</a>
