@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../redux/actions/socialPostActions";
 import SocialPostComponent from "./SocialPost";
 import { RootState } from "../../redux/reducers";
+import { Col, Row } from "reactstrap";
+import UserDataForm from "../User/UserProfile";
+import PostForm from "./PostForm";
 
 const SocialPostPage: React.FC = () => {
   const posts = useSelector((state: RootState) => state.allPosts.posts);
@@ -23,7 +26,16 @@ const SocialPostPage: React.FC = () => {
   console.log(posts)
   return (
     <div>
+      <Row>
+      <Col>
+      <PostForm/>
+      </Col>
+      <Col>
       <SocialPostComponent />
+      </Col>
+      <Col>
+      </Col>
+      </Row>
     </div>
   );
 };

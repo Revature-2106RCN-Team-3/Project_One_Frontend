@@ -1,14 +1,16 @@
 import { combineReducers } from "redux";
-import { socialPostReducer, selectedPostReducer } from "./socialPostReducers";
-import loginRegReducer from './loginRegReducer';
+import { socialPostReducer, selectedPostReducer, addPostReducer } from "./socialPostReducers";
 import errorReducer from './errorReducer';
 import loadingReducer from "./loadingReducer";
+import loginRegReducer from "./loginRegReducer";
 
-const reducers = combineReducers({
-    allPosts: socialPostReducer,
-    posts: selectedPostReducer,
-    auth: loginRegReducer,
-    error: errorReducer,
-    loading: loadingReducer,
-
+export const reducers = combineReducers({
+  allPosts: socialPostReducer,
+  addPost: addPostReducer,
+  getComments: socialPostReducer,
+  posts: selectedPostReducer,
+  auth: loginRegReducer,
+  error: errorReducer,
+  loading: loadingReducer,
+});
 export type RootState = ReturnType<typeof reducers>

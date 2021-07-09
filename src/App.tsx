@@ -10,6 +10,7 @@ import SocialPostComponent from './components/SocialPost/socialPost';
 import Navbar from './components/Navigation/Navigation';
 import SocialPostList from './components/socialPost/SocialPostList';
 import './App.css';
+import SocialPostDetails from './components/socialPost/SocialPostDetails';
 
 function App() {
   const dispatch = useDispatch();
