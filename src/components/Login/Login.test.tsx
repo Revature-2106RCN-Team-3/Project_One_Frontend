@@ -1,13 +1,16 @@
 import { describe } from '@jest/globals';
-import { IUser } from '../../models/userModel';
+import { shallow, ShallowWrapper } from 'enzyme';
+import { IUser } from '../../types/types';
 
 describe('renders the login page without crashing', () => {
     let user: IUser;
 
     beforeEach(() => {
         user = {
-        userName: 'test-user',
-        nickName: 'some-name'
-    })
+        username: 'test-user',
+        nickname: 'some-name'
+    };
+    onClick = () => console.log('')
+    )
     it('Should render the login attributes')
 })

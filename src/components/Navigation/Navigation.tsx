@@ -1,9 +1,34 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { logoutStart } from '../../redux/actions/logRegAction';
+import { IRootReducer } from '../../types/types';
 import logo from '../images/pics/logo.png';
+import withAuth from '../Login/withAuth';
+import Logout from '../Logout/Logout';
 import './Navigation.css';
 
-const Navbar: React.FC = () => {
-    return(
+interface IProps {
+    isAuth: boolean;    
+}
+
+const Navbar: React.FC<IProps> = ({isAuth}) => {
+    const dispatch = useDispatch();
+
+    const { isLoadingAuth, auth, error } = useSelector((state: IRootReducer) => ({
+        isLoadingAuth: state.loading.isLoadingAuth,
+        auth: state.auth,
+        error:state.error.authError,
+    }));
+
+    const onLogout = () => {
+        dispatch(logoutStart());
+    }
+
+    const { pathname } = useLocation();
+    const hidePaths = ['/login', '/signup', '/'];
+
+    return hidePaths.includes(pathname) && !isAuth ? (
         <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
             <div className="container-fluid">
                 <a href="/" className="navbar-brand">
@@ -33,7 +58,32 @@ const Navbar: React.FC = () => {
                 </div>
             </div>
         </nav> 
-    );
+    ) : (
+        <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
+            <div className="container-fluid">
+                <a href="/" className="navbar-brand">
+                    <img src={logo} alt='logo' width="50" height="50" className="d-inline-block align-text-top me-2"/>
+                    The Social Justice Warriors
+                </a>
+                <a href={`/user/${auth.username}`} className="link-light">
+                    @{auth.nickname}
+                </a>
+                <button 
+                type="button" 
+                className="btn btn-danger" 
+                data-bs-toggle="modal" 
+                data-bs-target="#staticBackdrop"
+                >
+                Logout
+                </button>
+                <Logout 
+                    dispatchLogout={onLogout}
+                    error={error}    
+                    isLoggingOut={isLoadingAuth}
+                />
+            </div>
+        </nav> 
+        ) 
 }
 
-export default Navbar;
+export default withAuth(Navbar);
