@@ -1,6 +1,6 @@
 import axios from 'axios';
 //import { logoutStart } from './redux/actions/logRegAction';
-import store from './redux/store';
+import {store} from './redux/store';
 import { IRegister } from './redux/types/types'
 
 const url = 'http://localhost:3000';
