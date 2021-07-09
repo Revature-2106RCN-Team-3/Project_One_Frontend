@@ -33,7 +33,6 @@ const PostForm: React.FC = () => {
     setPostText(value)
 }
 const dispatch = useDispatch();
-  
 
 const addClick = () => {
     dispatch({

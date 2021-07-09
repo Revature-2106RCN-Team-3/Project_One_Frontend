@@ -9,6 +9,7 @@ import Register from './components/Register/Register';
 import Navbar from './components/Navigation/Navigation';
 import SocialPostList from './components/socialPost/SocialPostList';
 import './App.css';
+import SocialPostDetails from './components/socialPost/SocialPostDetails';
 
 function App() {
   const dispatch = useDispatch();

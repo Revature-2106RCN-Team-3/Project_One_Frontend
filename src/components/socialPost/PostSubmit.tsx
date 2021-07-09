@@ -24,13 +24,13 @@ import SocialCommentsPage from "./SocialCommentsList";
 import { PostAction, setPost } from "../../redux/actions/socialPostActions";
 import axios from "axios";
 
-const PostForm: React.FC = () => {
+const PostSubmit: React.FC = (userName: string,postText: string) => {
   const posts = useSelector((state: RootState) => state.allPosts.posts);
   const dispatch = useDispatch();
   const fetchPosts = async () => {
     try{
     const response = await axios
-      .get("http://localhost:3001/api/home/post/getall")
+      .post("http://localhost:3001/api/home/post/addpost", {data: {userName: userName, postText: postText}})
     dispatch(setPost(response.data.posts.Items));
     }catch(err){
       console.log(err);
@@ -68,4 +68,4 @@ const PostForm: React.FC = () => {
   //   return <>{renderList}</>;
 };
 
-export default PostForm;
+export default PostSubmit;
