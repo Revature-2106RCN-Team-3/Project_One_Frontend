@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { CognitoUser, AuthenticationDetails, CognitoUserPool } from "amazon-cognito-identity-js";
+import { CognitoUser, AuthenticationDetails, CognitoUserPool, ISignUpResult } from "amazon-cognito-identity-js";
 import { CreateUser, signup } from '../../redux/actions/logRegAction';
 import axios from "../../../axiosConfig";
 import Carousel from "../carousel";
 import { RootStore } from "../../redux/store";
+import Login from "../../Login";
 
 const poolData = {
     UserPoolId: "us-east-2_UW3QxKzWj",
@@ -67,8 +68,14 @@ const Register = (): any => {
 
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setLoading(true);
-        await dispatch(signup({ username, password, first_name, last_name, birthday, phone }, () => setLoading(false)));
+        Login.createAccount(username, password, username, first_name, last_name, birthday,
+             phone, username, username, "Default profile.").then((signUpResult: ISignUpResult) => {
+
+                // Signup complete, redirect to somewhere
+
+             }).catch(console.error);
+        /*setLoading(true);
+        await dispatch(signup({ username, password, first_name, last_name, birthday, phone }, () => setLoading(false)))
         await dispatch(CreateUser({
             "username": username,
             "password": password,
@@ -81,7 +88,7 @@ const Register = (): any => {
         if(loading === false) {
             window.location.reload();
             window.location.href = "/";
-        }
+        }*/
     }
 
   return (

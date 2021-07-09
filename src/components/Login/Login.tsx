@@ -7,6 +7,7 @@ import Carousel from "../carousel";
 import './Login.css';
 import { ActionType } from "../../redux/action-types";
 import { login } from "../../redux/actions/logRegAction";
+import Login from "../../Login";
 
 const poolData = {
     UserPoolId: "us-east-2_UW3QxKzWj",
@@ -15,7 +16,7 @@ const poolData = {
 
 const userPool = new CognitoUserPool(poolData);
 
-const Login: React.FC = () => {
+const LoginComponent: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -45,9 +46,14 @@ const Login: React.FC = () => {
 
     const submitHandler = async (e: FormEvent) => {
         e.preventDefault();
-        setLoading(true);
+        Login.login(username, password, false).then((signUpResult: CognitoUser) => {
+
+               // Signup complete, redirect to somewhere
+
+            }).catch(console.error);
+        /*setLoading(true);
         await dispatch(login({ username, password }, () => {setLoading(false)}));
-        window.location.reload();
+        window.location.reload();*/
     }
 
     return(
@@ -121,4 +127,4 @@ const Login: React.FC = () => {
     )
 }
 
-export default Login;
+export default LoginComponent;
