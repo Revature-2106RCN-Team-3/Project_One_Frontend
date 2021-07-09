@@ -25,16 +25,13 @@ const SocialPostPage: React.FC = () => {
   }, []);
   console.log(posts);
   return (
-    <div>
-      <Row>
-        <Col>
-          <PostForm />
-        </Col>
-        <Col>
-          <SocialPostComponent />
-        </Col>
-        <Col></Col>
-      </Row>
+    <div className='row'>
+      <div className="col-12 pt-3 justify-content-center">
+        <PostForm />
+      </div>
+      <div className="col-12 px-5 py-5">
+        <SocialPostComponent />
+      </div>
     </div>
   );
 };

@@ -1,14 +1,24 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { MouseEvent } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import logo from '../images/pics/logo.png';
-import Logout from '../Logout/Logout';
 import './Navigation.css';
 import LoginCognito from '../../LoginCognito';
 
 const Navbar: React.FC = () => {
 
+    const history = useHistory();
+    const routeChange = () => {
+      let path = "/login";
+      history.push(path);
+    };
+
+    const onLogout = async () => {
+        await LoginCognito.logout();
+        routeChange();
+    }
+    
     const { pathname } = useLocation();
-    const hidePaths = ['/login', '/signup', '/'];
+    const hidePaths = ['/login', '/signup', '/', '/posts/add'];
 
     return hidePaths.includes(pathname) && !LoginCognito.isLoggedIn() ? (
         <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
@@ -55,7 +65,27 @@ const Navbar: React.FC = () => {
                 >
                 Logout
                 </button>
-                <Logout />
+                <div 
+                    className="modal fade" 
+                    id="staticBackdrop" 
+                    data-bs-toggle="static" 
+                    data-bs-keyboard="false" 
+                    tabindex="-1" 
+                    aria-labelledby="staticBackdropLabel" 
+                    aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="staticBackdropLabel">Logging out?</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={onLogout}>Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav> 
     )
