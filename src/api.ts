@@ -1,8 +1,10 @@
 import axios from 'axios';
-import { logoutStart } from './redux/actions/logRegAction';
+//import { logoutStart } from './redux/actions/logRegAction';
 import store from './redux/store';
-import { IRegister } from './types/types'
+import { IRegister } from './redux/types/types'
 
+const url = 'http://localhost:3000';
+axios.defaults.withCredentials=true;
 
 let isLogoutClicked = false;
 

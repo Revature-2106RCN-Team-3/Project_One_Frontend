@@ -1,47 +1,64 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Card, CardHeader, CardBody, CardTitle, CardText, Button, CardFooter } from "reactstrap";
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  Button,
+  CardFooter,
+  Row,
+  Col,
+} from "reactstrap";
 import { RootState } from "../../redux/reducers";
 
-const SocialPostComponent = () => {
+const SocialPostComponent: React.FC = () => {
   const posts = useSelector((state: RootState) => state.allPosts.posts);
   const renderList = posts.map(
     (post: {
-      userName: string;
-      postText: string;
-      postId: string;
-      parentPostId: string;
-      post_date_time: string;
-      mainPost: number;
-      like: boolean;
-      dislike: boolean;
+      post: {
+        Items: {
+          username: string;
+          post_text: string;
+          post_id: string;
+          parent_post_id: string;
+          post_date_time: string;
+          main_post: number;
+          like: boolean;
+          dislikes: boolean;
+        };
+      };
     }) => {
       const {
-        userName,
-        postText,
-        postId,
-        parentPostId,
+        username,
+        post_text,
+        post_id,
+        parent_post_id,
         post_date_time,
-        mainPost,
+        main_post,
         like,
-        dislike,
+        dislikes,
       } = post;
+
       return (
-        <div className="socialPost" key="postId">
-        <Link to={`/post/${postId}`}>
-          <Card>
-            <CardHeader>{userName}</CardHeader>
-            <CardBody>
-              <CardTitle tag="h5">{post_date_time}</CardTitle>
-              <CardText>
-                {postText}
-              </CardText>
-              <Button>See Comments</Button>
-            </CardBody>
-            <CardFooter></CardFooter>
-          </Card>
-        </Link>
+        <div>
+          <Row>
+            <Col sm="auto" md={{ size: 12, offset: 0 }}>
+              <Card>
+                <CardBody>
+                  <CardTitle tag="h5">{username}</CardTitle>
+                  <CardText></CardText>
+                  <CardText>{post_text}</CardText>
+                </CardBody>
+                <CardFooter>
+                  <Link to={`/posts/${parent_post_id}/${post_id}`}>
+                    <Button>Comments</Button>
+                  </Link>
+                </CardFooter>
+              </Card>
+            </Col>
+          </Row>
         </div>
       );
     }

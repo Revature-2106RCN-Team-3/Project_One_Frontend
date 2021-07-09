@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { PublicRoute } from './routers';
+import { PublicRoute, Protected } from './routers/index';
 import { useDispatch } from 'react-redux';
 import { checkAuthSess } from './api';
 import { loginSuccess } from './redux/actions/logRegAction';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Navbar from './components/Navigation/Navigation';
+import SocialPostList from './components/socialPost/SocialPostList';
 import './App.css';
 
 function App() {
@@ -21,12 +22,14 @@ function App() {
         console.log("ERROR", err);
       }
     })();
+    //eslint-disable-next-line
   }, []);
 
   return (
     <main className="bg-dark">
     <Navbar />
         <Switch>
+          <PublicRoute path={'/posts'} component={SocialPostList} />
           <PublicRoute path='/signup' component={Register} />
           <PublicRoute path='/login' component={Login} />
           <Route
@@ -34,6 +37,7 @@ function App() {
             exact
             render={(props:any) => <Login key={Date.now()} {...props} />}
           />
+          {/* <Protected path={'/posts'} component={SocialPostList} /> */}
         </Switch>
     </main>
   );

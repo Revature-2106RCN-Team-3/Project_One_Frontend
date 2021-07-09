@@ -1,25 +1,16 @@
-import React, { useState}  from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
-import InputField from "./UserInputField";
+import { useState}  from "react";
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Container, Row, Col } from "reactstrap";
+import { IUser } from "../../models/userModel";
 
-
-
-const UserDataForm = () => {
+const UserDataForm = (user:IUser) => {
     const [editable, toggleEditing] = useState(false);
     const [buttonText, setButtonText] = useState("Edit");
-    const [userData, setUserData] = useState({
-        Email: "",
-        FirstName: "",
-        LastName: "",
-        BirthDate: "",
-        PhoneNumber: "",
-        NickName: "",
-        PreferredName: "",
-        Profile: "",
-    });
+    // Passes user data in as an object.
+    const [userData, setUserData] = useState(user);
 
-    const submitHandle = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    // Activated upon pressing the save/edit button
+    const submitHandle = () => {
         toggleEditing(() => {return !editable});
         if (!editable) {
             setButtonText("Save");
@@ -30,6 +21,7 @@ const UserDataForm = () => {
         }
     }
 
+    // Called every time any field is changed
     const manageEdits = (e: any) => {
         const target = e.target;
         setUserData({
@@ -38,40 +30,43 @@ const UserDataForm = () => {
     }
   
     return (
-        <form onSubmit={e => {submitHandle(e)}}>
-        <View
-            style={styles.outerForm}>
-                <View style={{flexDirection: "row"}}>
-                    <InputField name="Email" label="Profile" inText={userData.Email}/>
-                    <View style={styles.buttonContainer}><input type="submit" value={buttonText}/></View>
-                </View>
-                <View style={{flexDirection: "row"}}>
-                    <InputField inText={userData.FirstName} label="First Name" name="FirstName" isEditing={editable} event={manageEdits}/>   
-                    <InputField inText={userData.LastName} label="Last Name" name="LastName" isEditing={editable} event={manageEdits}/>
-                </View>
-                <InputField inText={userData.BirthDate} label="Birthday" name="BirthDate" isEditing={editable} event={manageEdits}/>
-                <InputField inText={userData.PhoneNumber} label="Phone Number" name="PhoneNumber" isEditing={editable} event={manageEdits}/>
-                <InputField inText={userData.NickName} label="Nickname" name="NickName" isEditing={editable} event={manageEdits}/>
-                <InputField inText={userData.PreferredName} label="Preferred Name" name="PreferredName" isEditing={editable} event={manageEdits}/>
-                <InputField inText={userData.Profile} label="Profile" name="Profile" isEditing={editable} event={manageEdits}/>
-            </View>
-        </form>
+        <Container>
+        <Form>
+            <Row fluid="true">
+                <Col xs="2"><Label for="email" style={{color: "#ccc"}}>Profile Page</Label></Col>
+                <Col><Input id="email" plaintext value={userData.userName} disabled/></Col>
+                <Col xs="1"><Button onClick={submitHandle}>{buttonText}</Button></Col>
+            </Row>
+            <Row>
+                <Col><Label for="name" style={{color: "#ccc"}}>Name</Label></Col>
+            </Row><Row>
+                <Col><Input name="FirstName" placeholder="First" value={userData.firstName} onChange={manageEdits} disabled={!editable} /></Col>
+                <Col><Input name="LastName" placeholder="Last" value={userData.lastName} onChange={manageEdits} disabled={!editable} /></Col>
+            </Row>
+            <Row>
+                <Col><Label style={{color: "#ccc"}}>Birthday</Label></Col>
+            </Row><Row>
+                <Col><Input type="date" name="BirthDate" value={userData.birthDate} onChange={manageEdits} disabled={!editable}/></Col>
+            </Row><Row>
+                <Col><Label style={{color: "#ccc"}}>Phone Number</Label></Col>
+            </Row><Row>
+                <Col><Input name="PhoneNumber" value={userData.phoneNumber} onChange={manageEdits} disabled={!editable}/></Col>
+            </Row><Row>
+                <Col><Label style={{color: "#ccc"}}>Nickname</Label></Col>
+            </Row><Row>
+                <Col><Input name="NickName" value={userData.nickName} onChange={manageEdits} disabled={!editable}/></Col>
+            </Row><Row>
+                <Col><Label style={{color: "#ccc"}}>Preferred Name</Label></Col>
+            </Row><Row>
+                <Col><Input name="PreferredName" value={userData.publicName} onChange={manageEdits} disabled={!editable}/></Col>
+            </Row><Row>
+                <Col><Label style={{color: "#ccc"}}>Profile</Label></Col>
+            </Row><Row>
+                <Col><Input type="textarea" name="Profile" value={userData.profile} onChange={manageEdits} disabled={!editable}/></Col>
+            </Row>
+        </Form>
+        </Container>
     );
   };
-
-  const styles = StyleSheet.create({
-    outerForm: {
-        flexDirection: "column",
-        height: 600,
-        width: 400,
-        padding: 20,
-        backgroundColor: "#30315A",
-    },
-    buttonContainer: {
-        flex: 0.2,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-});
 
 export default UserDataForm;

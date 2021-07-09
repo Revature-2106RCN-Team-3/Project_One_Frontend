@@ -7,28 +7,25 @@ import { RootState } from "../../redux/reducers";
 
 
 //! add route for pulling individual parent post
-const SocialPostDetails = () => {
-    const socialPostId = useParams();
+const SocialPostDetails: React.FC = () => {
+    const postId = useParams();
     let post = useSelector((state: RootState) => state.allPosts.posts);
-    const {userName, postText, parentPostId, post_date_time, mainPost, like, dislike} = post;
     const dispatch= useDispatch();
-    const fetchPostDetail = async (postId: string, userName: string) => {
+    const fetchPostDetail = async () => {
         try{
         const response = await axios
-        .get("http://localhost:3000/api/home/post/",{data: {userName: post.userName, postId: post.postId}})
-        dispatch(selectedPost(response.data))
+        .get("http://localhost:3000/api/home/post/getpost",{data: {userName: post.userName, postId: post.postId, parentPostId: post.parentPostId}})
+        dispatch(selectedPost(response.data.post.Items))
     } catch(err) {
         console.log(err)
-    }
-
-        
+    }   
     }
     useEffect(() =>{
-        if(socialPostId && socialPostId !== "") fetchPostDetail(socialPostId);
+        if(postId && postId !== "") fetchPostDetail();
         return() => {
             dispatch(removeSelectedPost());
         };
-    }, [socialPostId]);
+    }, []);
     return(
         <div></div>
     );

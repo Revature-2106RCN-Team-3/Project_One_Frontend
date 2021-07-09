@@ -1,53 +1,81 @@
-import { IRegister, IUser } from '../../types/types';
+import { ThunkAction } from 'redux-thunk';
+import { RootStore } from '../store';
+import { Auth } from 'aws-amplify';
+import { CognitoUser } from 'amazon-cognito-identity-js';
 import { ActionType } from '../action-types';
+import { SignUp, Authenticate, IUser, Login } from '../types/types';
 
-export const loginStart = (username: string, password: string) => (<const>{
-    type: ActionType.LOGIN_START,
-    payload: {
-        username,
-        password
+
+export const setLoading = (
+    value: boolean
+) : ThunkAction<void, RootStore, null, Authenticate> => {
+    return (dispatch) => {
+        dispatch({ 
+            type: ActionType.SET_LOADING,
+            payload: value
+        })
     }
-});
+}
 
-export const loginSuccess = (auth: IUser) => (<const>{
-    type: ActionType.LOGIN_SUCCESS,
-    payload: auth
-});
 
-export const logoutStart = (callback?: () => void) => (<const>{
-    type: ActionType.LOGOUT_START,
-    payload: { callback }
-});
-
-export const logoutSuccess = () => (<const>{
-    type: ActionType.LOGOUT_SUCCESS
-});
-
-export const registerStart = ({ first_name, last_name, nickname, password, username }: IRegister) => (<const>{
-    type: ActionType.REGISTER_START,
-    payload: {
-        first_name,
-        last_name,
-        nickname,
-        password,
-        username
+export const login = (
+    data: Login,
+    onError: () => void
+) : ThunkAction<void, RootStore, null, Authenticate> => {
+    return async (dispatch) => {
+        try {
+            const res: CognitoUser = await Auth.signIn(data.username, data.password);
+            if(res) {
+                const userData: IUser = {
+                    username: res.getUsername(),
+                    password: data.password
+                };
+                dispatch({
+                    type: ActionType.SET_USERNAME,
+                    payload: userData
+                });
+            }
+        } catch (err) {
+            onError();
+            console.log(err);
+        }
     }
-});
+};
 
-export const registerSuccess = (userAuth: IUser) => (<const>{
-    type: ActionType.REGISTER_SUCCESS,
-    payload: userAuth
-});
+export const signup = (
+    data: SignUp,
+    onError: () => void
+): ThunkAction<void, RootStore, null, Authenticate> => {
+    return async (dispatch) => {
+        try {
+            const res = await Auth.signUp(data.username, data.password);
+            if(res.user) {
+                const userData: IUser = {
+                    username: data.username,
+                    password: data.password
+                }
+                dispatch({
+                    type: ActionType.SET_USERNAME,
+                    payload: userData
+                })
+            }
+        } catch (err) {
+            onError();
+            console.log(err);
+        }
+    }
+}
 
-export const checkSess = () => (<const>{
-    type: ActionType.CHECK_SESSION
-});
-
-export type AuthActionType = 
-    | ReturnType<typeof checkSess>
-    | ReturnType<typeof registerSuccess>
-    | ReturnType<typeof registerStart>
-    | ReturnType<typeof logoutSuccess>
-    | ReturnType<typeof logoutStart>
-    | ReturnType<typeof loginSuccess>
-    | ReturnType<typeof loginStart>
+export const logout = (): ThunkAction<void, RootStore, null, Authenticate> => {
+    return async (dispatch) => {
+        try {
+            dispatch(setLoading(true));
+            await Auth.signOut();
+            dispatch({
+                type: ActionType.LOGOUT_START
+            })
+        } catch (err) {
+            dispatch(setLoading(false));
+        }
+    }
+}

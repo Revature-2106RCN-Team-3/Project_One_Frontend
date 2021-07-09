@@ -1,37 +1,57 @@
-import React, { FormEvent, useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginStart } from '../../redux/actions/logRegAction';
-import './Login.css';
+import React, { FormEvent, useState, useEffect } from "react";
+import { RootStore } from '../../redux/store';
+import { useDispatch, useSelector } from "react-redux";
+import { CognitoUser, AuthenticationDetails, CognitoUserPool } from "amazon-cognito-identity-js";
+import { Auth } from 'aws-amplify';
 import Carousel from "../carousel";
+import './Login.css';
+import { ActionType } from "../../redux/action-types";
+import { login } from "../../redux/actions/logRegAction";
+
+const poolData = {
+    UserPoolId: "us-east-2_UW3QxKzWj",
+    ClientId: "bis6ou4bf4k7i548libkei128",
+};
+
+const userPool = new CognitoUserPool(poolData);
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const [isPasswordVisible, setPasswordVisible] = useState(false);
+
     const dispatch = useDispatch();
+    const { error } = useSelector((state: RootStore) => state.authenticate);
+
+    useEffect(() => {
+        return () => {
+            if(error) {
+                dispatch('');
+            }
+        }
+    }, [error, dispatch]);
 
     const usernameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         //get rid of whitespaces
         const value = e.target.value.trim();
         setUsername(value);
-    }
+    };
 
     const passwordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setPassword(value);
-    }
+    };
 
     const submitHandler = async (e: FormEvent) => {
         e.preventDefault();
-
-        if(username && password) {
-            //way to authenticate user to go to their dashboard
-            dispatch(loginStart(username, password));
-        }
+        setLoading(true);
+        await dispatch(login({ username, password }, () => {setLoading(false)}));
+        window.location.reload();
     }
 
     return(
-        <div className="row bg-dark">
+        <div className="login row bg-dark">
             <div className="col-6 ps-5 mt-5 mb-5">
                 <Carousel />
             </div>
