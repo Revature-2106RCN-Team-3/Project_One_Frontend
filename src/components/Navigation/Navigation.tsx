@@ -1,27 +1,24 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { ActionType } from '../../redux/action-types';
 //import { logoutStart } from '../../redux/actions/logRegAction';
 import { IRootReducer } from '../../types/types';
 import logo from '../images/pics/logo.png';
 import Logout from '../Logout/Logout';
+import { useReducer } from 'react';
+import  loginReducer, {initState} from "../../redux/reducers/loginRegReducer";
 import './Navigation.css';
+import { logoutStart } from '../../redux/actions/logRegAction';
 
-interface IProps {
-    isAuth: boolean;    
-}
-
-const Navbar: React.FC<IProps> = ({isAuth}) => {
-    const dispatch = useDispatch();
-
-    const { isLoadingAuth, auth, error } = useSelector((state: IRootReducer) => ({
-        isLoadingAuth: state.loading.isLoadingAuth,
-        auth: state.auth,
-        error:state.error.authError,
-    }));
+const Navbar: React.FC = () => {
+    const [state, dispatch] = useReducer(loginReducer, initState);
 
     const onLogout = () => {
-        dispatch(logoutStart());
+        dispatch({
+            type: ActionType.LOGOUT_START,
+            payload: 'Logging out'
+        });
     }
 
     const { pathname } = useLocation();
@@ -64,9 +61,6 @@ const Navbar: React.FC<IProps> = ({isAuth}) => {
                     <img src={logo} alt='logo' width="50" height="50" className="d-inline-block align-text-top me-2"/>
                     The Social Justice Warriors
                 </a>
-                <a href={`/user/${auth.username}`} className="link-light">
-                    @{auth.nickname}
-                </a>
                 <button 
                 type="button" 
                 className="btn btn-danger" 
@@ -77,8 +71,7 @@ const Navbar: React.FC<IProps> = ({isAuth}) => {
                 </button>
                 <Logout 
                     dispatchLogout={onLogout}
-                    error={error}    
-                    isLoggingOut={isLoadingAuth}
+                    error={state.error}
                 />
             </div>
         </nav> 
