@@ -8,8 +8,7 @@ import { loginSuccess } from './redux/actions/logRegAction';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Navbar from './components/Navigation/Navigation';
-import SocialPostList from './components/SocialPost/SocialPostList';
-import SocialPostAdd from './components/SocialPost/SocialPostAdd';
+import SocialPostList from './components/socialPost/SocialPostList';
 
 
 function App() {
@@ -26,7 +25,7 @@ function App() {
             render={(props:any) => <Login key={Date.now()} {...props} />}
           />
           <Route path={'/posts'} component={SocialPostList} />
-          <Route path={'/posts/added'} component={SocialPostAdd} />
+          {/* <Route path={'/posts/added'} component={SocialPostAdd} /> */}
         </Switch>
     </main>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../redux/actions/socialPostActions";
-import SocialPostComponent from "./SocialPost";
+import SocialPostComponent from "./socialPost";
 import { RootState } from "../../redux/reducers";
 import { Col, Row } from "reactstrap";
 import PostForm from "./PostForm";
