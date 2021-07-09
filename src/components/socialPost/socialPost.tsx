@@ -36,7 +36,7 @@ const SocialPostComponent: React.FC = () => {
         main_post,
         like,
         dislikes,
-      } = post;
+      } = post  
 
       return (
         <div>
