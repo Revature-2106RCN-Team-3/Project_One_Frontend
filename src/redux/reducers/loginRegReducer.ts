@@ -6,6 +6,7 @@ export const initState: ILogin = {
     authenticated: false,
     loading: false,
     isError: false,
+    success: ''
 }
 
 const loginReducer = (state = initState, action: Authenticate) => {
@@ -27,6 +28,11 @@ const loginReducer = (state = initState, action: Authenticate) => {
                 username: null,
                 authenticated: false,
                 loading: false
+            }
+        case ActionType.LOGIN_SUCCESS:
+            return {
+                ...state,
+                success: action.payload
             }
         case ActionType.IS_ERROR:
             return {

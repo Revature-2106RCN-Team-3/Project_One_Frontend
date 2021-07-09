@@ -22,7 +22,7 @@ const Login: React.FC = () => {
     const [isPasswordVisible, setPasswordVisible] = useState(false);
 
     const dispatch = useDispatch();
-    const { error } = useSelector((state: RootStore) => state.authenticate);
+    const { error } = useSelector((state: RootStore) => state.login);
 
     useEffect(() => {
         return () => {
