@@ -75,7 +75,7 @@ const Register = (): any => {
             "first_name": first_name,
             "last_name": last_name,
             "birthday": birthday,
-            "phone": phone
+            "phone": phone,
         }));
 
         if(loading === false) {
