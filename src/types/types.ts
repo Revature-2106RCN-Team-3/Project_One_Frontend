@@ -8,7 +8,8 @@ export interface IRootReducer {
 export interface ILogin {
     username: string;
     password: string;
-    isDisabled: boolean;
+    authenticated: boolean;
+    loading: false;
     isError: boolean;
 } 
 

@@ -1,45 +1,53 @@
-import React, { FormEvent, useState, useReducer } from "react";
-import './Login.css';
+import React, { FormEvent, useState, useEffect } from "react";
+import { RootStore } from '../../redux/store';
+import { useDispatch, useSelector } from "react-redux";
+import { CognitoUser, AuthenticationDetails, CognitoUserPool } from "amazon-cognito-identity-js";
+import { Auth } from 'aws-amplify';
 import Carousel from "../carousel";
-import  loginReducer, {initState} from "../../redux/reducers/loginRegReducer";
+import './Login.css';
 import { ActionType } from "../../redux/action-types";
 
+const poolData = {
+    UserPoolId: "us-east-2_UW3QxKzWj",
+    ClientId: "bis6ou4bf4k7i548libkei128",
+};
+
+const userPool = new CognitoUserPool(poolData);
+
 const Login: React.FC = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const [isPasswordVisible, setPasswordVisible] = useState(false);
-    const [state, dispatch] = useReducer(loginReducer, initState);
+
+    const dispatch = useDispatch();
+    const { error } = useSelector((state: RootStore) => state.authenticate);
+
+    useEffect(() => {
+        return () => {
+            if(error) {
+                dispatch('');
+            }
+        }
+    }, [error, dispatch]);
 
     const usernameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         //get rid of whitespaces
-        dispatch({
-            type:ActionType.SET_USERNAME,
-            payload: e.target.value
-        });
+        const value = e.target.value.trim();
+        setUsername(value);
     };
 
     const passwordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch({
-            type:ActionType.SET_PASSWORD,
-            payload: e.target.value
-        });
+        const value = e.target.value;
+        setPassword(value);
     };
 
     const submitHandler = async (e: FormEvent) => {
         e.preventDefault();
-
-        if(state.username && state.password) {
-            //way to authenticate user to go to their dashboard
-            dispatch({
-                type: ActionType.LOGIN_SUCCESS,
-                payload: 'Logged in'
-            });
-        } else {
-            dispatch({
-                type:ActionType.LOGIN_FAILED,
-                payload: 'Incorrect username/password'
-            });
-        };
+        setLoading(true);
+        await dispatch(login({ username, password }, () => {setLoading(false)}));
+        window.location.reload();
     }
-
 
     return(
         <div className="login row bg-dark">
@@ -60,7 +68,7 @@ const Login: React.FC = () => {
                             type="text"
                             id="username"
                             autoComplete="username"
-                            value={state.username}
+                            value={username}
                             onChange={usernameChangeHandler}
                             required
                             />
@@ -78,7 +86,7 @@ const Login: React.FC = () => {
                             autoComplete="current-password"
                             aria-describedby="eye"
                             onChange={passwordChangeHandler}
-                            value={state.password}
+                            value={password}
                             required
                             />
                             </div>
