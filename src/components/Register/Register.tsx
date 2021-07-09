@@ -68,7 +68,7 @@ const Register = (): any => {
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        await dispatch(signup({ username, password }, () => setLoading(false)));
+        await dispatch(signup({ username, password, first_name, last_name, birthday, phone }, () => setLoading(false)));
         await dispatch(CreateUser({
             "username": username,
             "password": password,
