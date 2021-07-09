@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { registerStart } from "../../redux/actions/logRegAction";
+//import { registerStart } from "../../redux/actions/logRegAction";
 import Carousel from "../carousel";
 
 

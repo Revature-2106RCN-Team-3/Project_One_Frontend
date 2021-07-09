@@ -1,10 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { logoutStart } from '../../redux/actions/logRegAction';
+//import { logoutStart } from '../../redux/actions/logRegAction';
 import { IRootReducer } from '../../types/types';
 import logo from '../images/pics/logo.png';
-import withAuth from '../Login/withAuth';
 import Logout from '../Logout/Logout';
 import './Navigation.css';
 
@@ -86,4 +85,4 @@ const Navbar: React.FC<IProps> = ({isAuth}) => {
         ) 
 }
 
-export default withAuth(Navbar);
+export default Navbar;

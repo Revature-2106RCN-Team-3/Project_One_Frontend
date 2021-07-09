@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { logoutStart } from './redux/actions/logRegAction';
+//import { logoutStart } from './redux/actions/logRegAction';
 import store from './redux/store';
 import { IRegister } from './types/types'
 
