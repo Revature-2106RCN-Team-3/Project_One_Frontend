@@ -14,4 +14,5 @@ export const reducers = combineReducers({
   error: errorReducer,
   loading: loadingReducer,
 });
+
 export type RootState = ReturnType<typeof reducers>

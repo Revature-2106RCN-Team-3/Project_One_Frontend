@@ -6,6 +6,7 @@ import { Auth } from 'aws-amplify';
 import Carousel from "../carousel";
 import './Login.css';
 import { ActionType } from "../../redux/action-types";
+import { login } from "../../redux/actions/logRegAction";
 
 const poolData = {
     UserPoolId: "us-east-2_UW3QxKzWj",

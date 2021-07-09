@@ -1,5 +1,5 @@
 import { ActionType } from '../action-types';
-import { IErrorState } from '../../types/types';
+import { IErrorState } from '../types/types';
 import { ErrorActionType } from '../actions/errorAction';
 
 const initState: IErrorState = {

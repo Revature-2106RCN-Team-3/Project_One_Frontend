@@ -1,17 +1,16 @@
-import { AuthActionType } from "../actions/logRegAction";
-import { ILogin } from "../../types/types";
+import {Authenticate, ILogin} from '../types/types';
 import { ActionType } from "../action-types";
 
 export const initState: ILogin = {
-    username: '',
+    username: null,
     authenticated: false,
     loading: false,
     isError: false,
 }
 
-const loginReducer = (state = initState, action: AuthActionType) => {
+const loginReducer = (state = initState, action: Authenticate) => {
     switch (action.type) {
-        case ActionType.SET_USER:
+        case ActionType.SET_USERNAME:
             return {
                 ...state,
                 username: action.payload,
