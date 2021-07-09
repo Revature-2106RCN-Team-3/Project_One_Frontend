@@ -1,4 +1,4 @@
-import peace from './images/pics/peace.jpg';
+import peace from './images/pics/peace.png';
 import logo_name from './images/pics/logo_name.png';
 import safeSpace from './images/pics/safeSpace.png';
 const Carousel: React.FC = () => {
