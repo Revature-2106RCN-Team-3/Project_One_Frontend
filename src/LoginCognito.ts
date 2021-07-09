@@ -11,7 +11,6 @@ const userPool = new CognitoUserPool({
 // Sugar to create a new user attribute for the big lists below.
 function newUserAttribute(name: string, value: string): CognitoUserAttribute{
 
-    console.log(name);
     return new CognitoUserAttribute({
 
         Name: name,
