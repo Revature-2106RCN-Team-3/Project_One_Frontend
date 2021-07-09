@@ -3,6 +3,9 @@ import axios from "axios";
 import login from "../../LoginCognito";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import SocialPostComponent from "./SocialPost";
+import { setPost } from "../../redux/actions/socialPostActions";
+import { useDispatch } from "react-redux";
 
 const PostForm: React.FC<{onPost: () => void}> = (props: any) => {
   const [postText, setPostText] = useState("");
@@ -14,10 +17,20 @@ const PostForm: React.FC<{onPost: () => void}> = (props: any) => {
   };
 
   const postChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
+    const value = e.target.value;
     setPostText(value);
   };
-
+  const dispatch = useDispatch();
+  const helpMe = async() => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3001/api/home/post/getall"
+      );
+      dispatch(setPost(response.data.posts.Items));
+    } catch (err) {
+      console.log(err);
+    }
+  }
   const fetchPosts = async () => {
     try {
       const x = String(await login.getUserName());
@@ -31,10 +44,13 @@ const PostForm: React.FC<{onPost: () => void}> = (props: any) => {
       );
       routeChange();
       props.onPost();
+      helpMe();
+      setPostText("");
     } catch (err) {
       console.log(err);
     }
   };
+
   return (
     <div>
       <FormGroup className="mx-5">
