@@ -20,6 +20,7 @@ export interface ILogin {
     authenticated: boolean;
     loading: false;
     isError: boolean;
+    success: string;
 }
 
 export interface SetUser {
@@ -41,8 +42,44 @@ export interface SetError {
   payload: string;
 }
 
+export interface SetSuccess {
+  type: typeof ActionType.LOGIN_SUCCESS;
+  payload: string;
+}
+
+export interface UserAPI {
+  username: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  birthday: string;
+  phone: string;
+}
+
+export type UserAPIType = {
+  username: string;
+}
+export interface UserLoading {
+  type: typeof ActionType.USER_LOADING
+}
+
+export interface UserFail {
+  type: typeof ActionType.USER_FAIL
+}
+
+export interface UserSuccess {
+  type: typeof ActionType.USER_SUCCESS,
+  payload: UserAPIType
+}
+
 export type Authenticate = 
   | SetUser
   | SetLoading
   | Logout
-  | SetError;
+  | SetError
+  | SetSuccess;
+
+export type UserDispatch = 
+  | UserLoading
+  | UserFail
+  | UserSuccess;

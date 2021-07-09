@@ -3,8 +3,45 @@ import { RootStore } from '../store';
 import { Auth } from 'aws-amplify';
 import { CognitoUser } from 'amazon-cognito-identity-js';
 import { ActionType } from '../action-types';
-import { SignUp, Authenticate, IUser, Login } from '../types/types';
+import { SignUp, Authenticate, IUser, Login, UserDispatch } from '../types/types';
+import axios from 'axios';
+import { Dispatch } from 'react';
 
+const apiURL = 'localhost:3000';
+
+export const CreateUser = (user: {}) => async(dispatch: Dispatch<UserDispatch>) => {
+    try {
+        dispatch({
+            type: ActionType.USER_LOADING
+        })
+
+        await axios.post(`${apiURL}/username`, user)
+        .then( function (res) {
+            dispatch({
+                type: ActionType.USER_SUCCESS,
+                payload: res.data
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    } catch (err) {
+        dispatch({
+            type: ActionType.USER_FAIL
+        })
+    }
+}
+
+export const loginSuccess = (
+    msg: string
+) : ThunkAction<void, RootStore, null, Authenticate> => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.LOGIN_SUCCESS,
+            payload: msg
+        })
+    }
+}
 
 export const setLoading = (
     value: boolean
