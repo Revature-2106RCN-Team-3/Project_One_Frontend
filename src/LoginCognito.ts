@@ -139,7 +139,7 @@ export default class Login{
      * @since 0.0.0
      */
     public static async login(userName: string, password: string, remember: boolean): Promise<CognitoUser>{
-        
+        console.log("starting login in loginCognito");
         return new Promise((resolve, reject) => {
 
             const user = new CognitoUser({
@@ -148,6 +148,7 @@ export default class Login{
                 Pool: userPool
     
             });
+            console.log(userName, password, " authenticating user")
             user.authenticateUser({
 
                 getUsername: () => userName,
