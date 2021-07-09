@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   Card,
-  CardHeader,
   CardBody,
   CardTitle,
   CardText,
@@ -11,7 +10,6 @@ import {
   CardFooter,
   Row,
   Col,
-  UncontrolledCollapse,
 } from "reactstrap";
 import { RootState } from "../../redux/reducers";
 
@@ -21,12 +19,12 @@ const SocialPostComponent: React.FC = () => {
     (post: {
       post: {
         Items: {
-          userName: string;
-          postText: string;
-          postId: string;
-          parentPostId: string;
+          username: string;
+          post_text: string;
+          post_id: string;
+          parent_post_id: string;
           post_date_time: string;
-          mainPost: number;
+          main_post: number;
           like: boolean;
           dislikes: boolean;
         };
@@ -36,34 +34,26 @@ const SocialPostComponent: React.FC = () => {
         username,
         post_text,
         post_id,
-        parentPostId,
+        parent_post_id,
         post_date_time,
-        mainPost,
+        main_post,
         like,
         dislikes,
       } = post;
+
       return (
         <div>
           <Row>
-            <Col sm="12" md={{ size: 6, offset: 3 }}>
+            <Col sm="auto" md={{ size: 12, offset: 0 }}>
               <Card>
-                <CardHeader>{username}</CardHeader>
                 <CardBody>
-                  <CardTitle tag="h5">{post_date_time}</CardTitle>
+                  <CardTitle tag="h5">{username}</CardTitle>
+                  <CardText></CardText>
                   <CardText>{post_text}</CardText>
                 </CardBody>
                 <CardFooter>
-                  <Link to={`/posts/${post_id}`}>
-                    <Button
-                      color="primary"
-                      id="toggler"
-                      style={{ marginBottom: "1rem" }}
-                    >
-                      See Comments
-                    </Button>
-                    <UncontrolledCollapse toggler="#toggler">
-                      
-                    </UncontrolledCollapse>
+                  <Link to={`/posts/${parent_post_id}/${post_id}`}>
+                    <Button>Comments</Button>
                   </Link>
                 </CardFooter>
               </Card>
