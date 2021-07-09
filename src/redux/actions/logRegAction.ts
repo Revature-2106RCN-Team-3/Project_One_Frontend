@@ -32,6 +32,17 @@ export const CreateUser = (user: {}) => async(dispatch: Dispatch<UserDispatch>) 
     }
 }
 
+export const loginSuccess = (
+    msg: string
+) : ThunkAction<void, RootStore, null, Authenticate> => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.LOGIN_SUCCESS,
+            payload: msg
+        })
+    }
+}
+
 export const setLoading = (
     value: boolean
 ) : ThunkAction<void, RootStore, null, Authenticate> => {

@@ -11,25 +11,12 @@ import SocialPostList from './components/socialPost/SocialPostList';
 import './App.css';
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    (async () => {
-      try{
-        const { auth } = await checkAuthSess();
-        dispatch(loginSuccess(auth));
-      } catch (err) {
-        console.log("ERROR", err);
-      }
-    })();
-    //eslint-disable-next-line
-  }, []);
 
   return (
     <main className="bg-dark">
-    <Navbar />
+    {/*<Navbar />*/}
         <Switch>
-          <PublicRoute path={'/posts'} component={SocialPostList} />
+          {/*<PublicRoute path={'/posts'} component={SocialPostList} />*/}
           <PublicRoute path='/signup' component={Register} />
           <PublicRoute path='/login' component={Login} />
           <Route
