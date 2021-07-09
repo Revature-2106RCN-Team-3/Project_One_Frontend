@@ -1,4 +1,4 @@
-import Login from "./Login";
+import Login from "./LoginCognito";
 
 test("Create a user account.", () => {
 
