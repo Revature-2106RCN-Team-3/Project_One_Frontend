@@ -1,13 +1,11 @@
 import React, { FormEvent, useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom';
 import { RootStore } from '../../redux/store';
 import { useDispatch, useSelector } from "react-redux";
 import { CognitoUser, AuthenticationDetails, CognitoUserPool } from "amazon-cognito-identity-js";
-import { Auth } from 'aws-amplify';
 import Carousel from "../carousel";
 import './Login.css';
-import { ActionType } from "../../redux/action-types";
-import { login } from "../../redux/actions/logRegAction";
-import Login from "../../LoginCognito";
+import LoginCognito from "../../LoginCognito";
 
 const poolData = {
     UserPoolId: "us-east-2_UW3QxKzWj",
@@ -44,13 +42,19 @@ const LoginComponent: React.FC = () => {
         setPassword(value);
     };
 
+    const history = useHistory();
+
+    const routeChange = () => {
+        let path = '/posts';
+        history.push(path);
+    }
+    
     const submitHandler = async (e: FormEvent) => {
         e.preventDefault();
         console.log(username, password);
-        Login.login(username, password, false).then((signUpResult: CognitoUser) => {
-
+        LoginCognito.login(username, password, false).then((signUpResult: CognitoUser) => {
                // Signup complete, redirect to somewhere
-
+               routeChange();
             }).catch(console.error);
         /*setLoading(true);
         await dispatch(login({ username, password }, () => {setLoading(false)}));
