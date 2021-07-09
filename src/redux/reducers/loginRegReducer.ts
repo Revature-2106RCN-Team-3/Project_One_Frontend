@@ -4,39 +4,32 @@ import { ActionType } from "../action-types";
 
 export const initState: ILogin = {
     username: '',
-    password: '',
-    isDisabled: true,
+    authenticated: false,
+    loading: false,
     isError: false,
 }
 
 const loginReducer = (state = initState, action: AuthActionType) => {
     switch (action.type) {
-        case ActionType.SET_USERNAME:
+        case ActionType.SET_USER:
             return {
                 ...state,
-                username: action.payload
+                username: action.payload,
+                authenticated: true
             }
-        case ActionType.SET_PASSWORD:
+        case ActionType.SET_LOADING:
             return {
                 ...state,
-                password: action.payload
+                loading: action.payload
             }
-        case ActionType.SET_IS_DISABLED:
+        case ActionType.LOGOUT_START:
             return {
                 ...state,
-                isDisabled: action.payload
+                username: null,
+                authenticated: false,
+                loading: false
             }
-        case ActionType.LOGIN_SUCCESS:
-            return {
-                ...state,
-                isError:false
-            }
-        case ActionType.LOGIN_FAILED:
-            return {
-                ...state,
-                isError: true
-            }
-        case ActionType.SET_IS_ERROR:
+        case ActionType.IS_ERROR:
             return {
                 ...state,
                 isError: action.payload

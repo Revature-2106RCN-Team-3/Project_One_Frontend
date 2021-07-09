@@ -10,8 +10,8 @@ export enum ActionType {
     SET_AUTH_ERR = 'set-auth-err',
     CLEAR_AUTH_ERR = 'clear-auth-err',
     SET_AUTH_LOADING = 'set-auth-load',
-    SET_USERNAME = 'set-username',
-    SET_PASSWORD = 'set-password',
-    SET_IS_DISABLED = 'set-is-disabled',
-    SET_IS_ERROR = 'set-is-error'
+    SET_USER = 'set-username',
+    SET_LOADING = 'set-password',
+    AUTHENTICATED = 'authenticated',
+    IS_ERROR = 'is-error'
 }
