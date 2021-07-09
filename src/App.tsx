@@ -18,7 +18,7 @@ function App() {
         <Switch>
           {/*<PublicRoute path={'/posts'} component={SocialPostList} />*/}
           <Route path='/signup' component={Register} />
-          <PublicRoute path='/login' component={Login} />
+          <Route path='/login' component={Login} />
           <Route
             path='/'
             exact
