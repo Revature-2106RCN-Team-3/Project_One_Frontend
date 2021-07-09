@@ -14,8 +14,6 @@ const SocialPostComponent: React.FC = () => {
   const posts = useSelector((state: RootState) => state.allPosts.posts);
   const renderList = posts.map(
     (post: {
-      post: {
-        Items: {
           username: string;
           post_text: string;
           post_id: string;
@@ -24,8 +22,6 @@ const SocialPostComponent: React.FC = () => {
           main_post: number;
           like: boolean;
           dislikes: boolean;
-        };
-      };
     }) => {
       const {
         username,
