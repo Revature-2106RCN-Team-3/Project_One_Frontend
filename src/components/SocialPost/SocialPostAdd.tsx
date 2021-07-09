@@ -1,13 +1,12 @@
-import React, { useEffect, useCallback, useMemo } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../redux/actions/socialPostActions";
-import SocialPostComponent from "./socialPost";
+import SocialPostComponent from "./SocialPost";
 import { RootState } from "../../redux/reducers";
-import { Col, Row } from "reactstrap";
 import PostForm from "./PostForm";
 
-const SocialPostPage: React.FC = () => {
+const SocialPostAdd: React.FC = () => {
   const posts = useSelector((state: RootState) => state.allPosts.posts);
   const dispatch = useDispatch();
   const fetchPosts = async () => {
@@ -27,7 +26,7 @@ const SocialPostPage: React.FC = () => {
   return (
     <div className='row'>
       <div className="col-12 pt-3 justify-content-center">
-        <PostForm />
+        <a href="/posts" role="button" className="btn btn-info">Add Post?</a>
       </div>
       <div className="col-12 px-5 py-5">
         <SocialPostComponent />
@@ -36,4 +35,4 @@ const SocialPostPage: React.FC = () => {
   );
 };
 
-export default SocialPostPage;
+export default SocialPostAdd;
