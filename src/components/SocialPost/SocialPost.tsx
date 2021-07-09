@@ -1,13 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   Card,
   CardBody,
   CardTitle,
   CardText,
-  Button,
-  CardFooter,
   Row,
   Col,
 } from "reactstrap";
@@ -39,7 +36,7 @@ const SocialPostComponent: React.FC = () => {
         main_post,
         like,
         dislikes,
-      } = post;
+      } = post.post.Items;
 
       return (
         <div>
@@ -51,11 +48,6 @@ const SocialPostComponent: React.FC = () => {
                   <CardText></CardText>
                   <CardText>{post_text}</CardText>
                 </CardBody>
-                <CardFooter>
-                  <Link to={`/posts/${parent_post_id}/${post_id}`}>
-                    <Button>Comments</Button>
-                  </Link>
-                </CardFooter>
               </Card>
             </Col>
           </Row>
