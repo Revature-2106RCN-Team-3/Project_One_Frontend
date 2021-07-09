@@ -25,7 +25,7 @@ const Register = (): any => {
     const [isPasswordVisible, setPasswordVisible] = useState(false);
 
     const dispatch = useDispatch();
-    const { error } = useSelector((state: RootStore) => state.auth);
+    const { error } = useSelector((state: RootStore) => state.login);
 
     useEffect(() => {
         return () => {
