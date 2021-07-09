@@ -5,7 +5,7 @@ import { CreateUser, signup } from '../../redux/actions/logRegAction';
 import axios from "../../../axiosConfig";
 import Carousel from "../carousel";
 import { RootStore } from "../../redux/store";
-import Login from "../../Login";
+import Login from "../../LoginCognito";
 
 const poolData = {
     UserPoolId: "us-east-2_UW3QxKzWj",
@@ -68,8 +68,11 @@ const Register = (): any => {
 
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        Login.createAccount(username, password, username, first_name, last_name, birthday,
-             phone, username, username, "Default profile.").then((signUpResult: ISignUpResult) => {
+        const name = username.split("@")[0]
+        console.log(name);
+        console.log(password,username)
+        Login.createAccount(name, password, username, first_name, last_name, birthday,
+             phone, name, name, "Default profile.").then((signUpResult: ISignUpResult) => {
 
                 // Signup complete, redirect to somewhere
 
@@ -155,7 +158,6 @@ const Register = (): any => {
                             id="phone"
                             value={phone}
                             placeholder="1-123-456-7890"
-                            pattern="1-[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             onChange={phoneChangeHandler}
                             required
                             />

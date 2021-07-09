@@ -23,7 +23,7 @@ function App() {
             exact
             render={(props:any) => <Login key={Date.now()} {...props} />}
           />
-          <Protected path={'/posts'} component={SocialPostList} />
+          <Route path={'/posts'} component={SocialPostList} />
         </Switch>
     </main>
   );

@@ -19,10 +19,10 @@ const PostForm: React.FC = () => {
         "http://localhost:3001/api/home/post/addpost",
         { data: { userName: name, postText: postText } }
       );
-      window.location.reload();
+      
     } catch (err) {
       console.log(err);
-      window.location.reload();
+
     }
   };
   return (
