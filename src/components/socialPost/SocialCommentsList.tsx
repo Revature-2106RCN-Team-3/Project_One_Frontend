@@ -4,15 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../redux/actions/socialPostActions";
 import SocialPostComponent from "./SocialPost";
 import { RootState } from "../../redux/reducers";
+import { useParams } from "react-router-dom";
+import SocialComments from "./SocialComments";
 
-const SocialPostPage: React.FC = () => {
+const SocialCommentsPage: React.FC = () => {
+    const parentPostId = useParams();
   const posts = useSelector((state: RootState) => state.allPosts.posts);
-  const {userName, postText, parentPostId, post_date_time, mainPost, like, dislike} = post;
+//   const {userName, postText, parentPostId, post_date_time, mainPost, like, dislike} = posts;
   const dispatch = useDispatch();
   const fetchPosts = async () => {
     try{
     const response = await axios
-      .get("http://localhost:3001/api/home/post/getcomments", {data: {userName: post.userName, postId: post.postId}})
+      .get("http://localhost:3001/api/home/post/getcomments", {data: {parentPostId: parentPostId}})
     dispatch(setPost(response.data.posts.Items));
     }catch(err){
       console.log(err);
@@ -24,9 +27,9 @@ const SocialPostPage: React.FC = () => {
   console.log(posts)
   return (
     <div>
-      <SocialPostComponent />
+      <SocialComments />
     </div>
   );
 };
 
-export default SocialPostPage;
+export default SocialCommentsPage;

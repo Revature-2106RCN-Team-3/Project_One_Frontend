@@ -1,14 +1,22 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginStart } from '../../redux/actions/logRegAction';
 import './Login.css';
 import Carousel from "../carousel";
+import { setAuthError } from "../../redux/actions/errorAction";
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isPasswordVisible, setPasswordVisible] = useState(false);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        return () => {
+            dispatch(setAuthError(null));
+        }
+        //eslint-disable-next-line 
+    }, []);
 
     const usernameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         //get rid of whitespaces
@@ -30,8 +38,9 @@ const Login: React.FC = () => {
         }
     }
 
+
     return(
-        <div className="row bg-dark">
+        <div className="login row bg-dark">
             <div className="col-6 ps-5 mt-5 mb-5">
                 <Carousel />
             </div>

@@ -1,6 +1,7 @@
 export interface IRootReducer {
     auth: IUser;
     error: IError;
+    loading: Loading;
     profile: IProfile;
 }
 
@@ -31,7 +32,6 @@ export interface IError {
 
 export interface IErrorState {
   authError: IError | null;
-  profileError: IError | null;
 }
 
 export interface Loading {
