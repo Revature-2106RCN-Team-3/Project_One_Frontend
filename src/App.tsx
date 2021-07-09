@@ -17,8 +17,8 @@ function App() {
     {/*<Navbar />*/}
         <Switch>
           {/*<PublicRoute path={'/posts'} component={SocialPostList} />*/}
-          <PublicRoute path='/signup' component={Register} />
-          <PublicRoute path='/login' component={Login} />
+          <Route path='/signup' component={Register} />
+          <Route path='/login' component={Login} />
           <Route
             path='/'
             exact

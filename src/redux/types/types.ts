@@ -19,7 +19,7 @@ export interface ILogin {
     username: IUser | null;
     authenticated: boolean;
     loading: false;
-    isError: boolean;
+    setError: string;
     success: string;
 }
 

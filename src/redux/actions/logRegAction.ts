@@ -43,6 +43,17 @@ export const loginSuccess = (
     }
 }
 
+export const setError =(
+    msg: string
+) : ThunkAction<void, RootStore, null, Authenticate> => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_ERROR,
+            payload: msg
+        })
+    }
+}
+
 export const setLoading = (
     value: boolean
 ) : ThunkAction<void, RootStore, null, Authenticate> => {
