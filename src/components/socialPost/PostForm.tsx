@@ -10,11 +10,14 @@ const PostForm: React.FC = () => {
     const value = e.target.value.trim();
     setPostText(value);
   };
+  
   const name = async () => {
     await login.getUserName();
   }
+
   const fetchPosts = async () => {
     try {
+      console.log(name, postText);
       await axios.post(
         "http://localhost:3001/api/home/post/addpost",
         { data: { userName: name, postText: postText } }
