@@ -13,6 +13,10 @@ export interface Login {
 export interface SignUp {
   username: string;
   password: string;
+  birthday: string;
+  phone: string;
+  first_name: string;
+  last_name:string
 }
 
 export interface ILogin {
@@ -38,7 +42,7 @@ export interface Logout {
 }
 
 export interface SetError {
-  type: typeof ActionType.IS_ERROR;
+  type: typeof ActionType.SET_ERROR;
   payload: string;
 }
 

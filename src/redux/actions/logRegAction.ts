@@ -83,6 +83,7 @@ export const login = (
                     payload: userData
                 });
             }
+            console.log(res);
         } catch (err) {
             onError();
             console.log(err);
@@ -98,15 +99,20 @@ export const signup = (
         try {
             const res = await Auth.signUp(data.username, data.password);
             if(res.user) {
-                const userData: IUser = {
+                const userData: SignUp = {
                     username: data.username,
-                    password: data.password
+                    password: data.password,
+                    birthday: data.birthday,
+                    phone: data.phone,
+                    first_name: data.first_name,
+                    last_name: data.last_name
                 }
                 dispatch({
                     type: ActionType.SET_USERNAME,
                     payload: userData
                 })
             }
+            console.log(res.user)
         } catch (err) {
             onError();
             console.log(err);
