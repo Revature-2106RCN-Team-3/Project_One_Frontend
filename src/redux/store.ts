@@ -14,7 +14,13 @@ const enhancer = composeEnhancers(
   applyMiddleware(thunk),
   // other store enhancers if any
 );
-const store = createStore(reducers,{}, enhancer);
 
-export default store;
+export const store = createStore(
+  reducers,
+  {}, 
+  enhancer
+);
+
+export type RootStore = 
+  | ReturnType<typeof reducers>
 
