@@ -1,30 +1,16 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { ActionType } from '../../redux/action-types';
-//import { logoutStart } from '../../redux/actions/logRegAction';
-import { IRootReducer } from '../../redux/types/types';
 import logo from '../images/pics/logo.png';
 import Logout from '../Logout/Logout';
-import { useReducer } from 'react';
-import  loginReducer, {initState} from "../../redux/reducers/loginRegReducer";
 import './Navigation.css';
-import { logoutStart } from '../../redux/actions/logRegAction';
+import LoginCognito from '../../LoginCognito';
 
 const Navbar: React.FC = () => {
-    const [state, dispatch] = useReducer(loginReducer, initState);
-
-    const onLogout = () => {
-        dispatch({
-            type: ActionType.LOGOUT_START,
-            payload: 'Logging out'
-        });
-    }
 
     const { pathname } = useLocation();
     const hidePaths = ['/login', '/signup', '/'];
 
-    return hidePaths.includes(pathname) && !isAuth ? (
+    return hidePaths.includes(pathname) && !LoginCognito.isLoggedIn() ? (
         <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
             <div className="container-fluid">
                 <a href="/" className="navbar-brand">
@@ -69,13 +55,10 @@ const Navbar: React.FC = () => {
                 >
                 Logout
                 </button>
-                <Logout 
-                    dispatchLogout={onLogout}
-                    error={state.error}
-                />
+                <Logout />
             </div>
         </nav> 
-        ) 
+    )
 }
 
 export default Navbar;

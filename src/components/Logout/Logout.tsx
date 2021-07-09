@@ -1,12 +1,10 @@
-import { IError } from "../../redux/types/types";
+import LoginCognito from '../../LoginCognito';
 
-interface IProps {
-    dispatchLogout: () => void;
-    isLoggingOut: boolean;
-    error: IError
-}
+const Logout: React.FC = () => {
+    const onLogout = async () => {
+        await LoginCognito.logout();
+    }
 
-const Logout: React.FC<IProps> = (props) => {
     return (
         <div 
             className="modal fade" 
@@ -24,7 +22,7 @@ const Logout: React.FC<IProps> = (props) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" className="btn btn-danger" disabled={props.isLoggingOut} onClick={props.dispatchLogout}>Logout</button>
+                        <button type="button" className="btn btn-danger" onClick={onLogout}>Logout</button>
                     </div>
                 </div>
             </div>
