@@ -4,7 +4,7 @@ import login from "../../LoginCognito";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-const PostForm: React.FC<{onPost: () => void}> = (props: any) => {
+const PostForm: React.FC = () => {
   const [postText, setPostText] = useState("");
 
   const history = useHistory();
@@ -30,7 +30,6 @@ const PostForm: React.FC<{onPost: () => void}> = (props: any) => {
         }
       );
       routeChange();
-      props.onPost();
     } catch (err) {
       console.log(err);
     }
