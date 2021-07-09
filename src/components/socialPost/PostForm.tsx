@@ -1,6 +1,7 @@
 import { Button, Col, Form, FormGroup, Input } from "reactstrap";
 import axios from "axios";
 import login from "../../LoginCognito";
+import { useHistory } from 'react-router-dom';
 import { useState } from "react";
 
 const PostForm: React.FC = () => {
@@ -10,16 +11,24 @@ const PostForm: React.FC = () => {
     const value = e.target.value.trim();
     setPostText(value);
   };
+  
   const name = async () => {
     await login.getUserName();
   }
+
+  const history = useHistory();
+  const routeChange = () => {
+    let path = '/posts';
+    history.push(path);
+  }
+
   const fetchPosts = async () => {
     try {
       await axios.post(
         "http://localhost:3001/api/home/post/addpost",
         { data: { userName: name, postText: postText } }
       );
-      
+      routeChange();
     } catch (err) {
       console.log(err);
 
