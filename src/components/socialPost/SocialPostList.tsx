@@ -29,6 +29,7 @@ const SocialPostPage: React.FC = () => {
       console.log(err);
     }
   };
+  // fetchPosts();
   useEffect(() => {
     fetchPosts();
   }, []);
