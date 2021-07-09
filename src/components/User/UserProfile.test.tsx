@@ -1,6 +1,6 @@
 import { describe } from '@jest/globals';
 import { IUser } from '../../models/userModel';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import UserDataForm from './UserProfile';
 import { Button, Container, Row, Input } from 'reactstrap';
 import { element } from 'prop-types';
@@ -20,7 +20,7 @@ const testUser: IUser = {
 
 
 describe('<UserDataForm />', () => {
-    const testForm = mount(<UserDataForm {...testUser}/>);
+    const testForm = shallow(<UserDataForm {...testUser}/>);
 
     it('should create a container', () => {
         expect(testForm.find(Container)).toHaveLength(1);
@@ -34,7 +34,7 @@ describe('<UserDataForm />', () => {
 
     it('should become editable when edit is clicked', () => {
         testForm.find(Button).simulate('click');
-        expect(testForm.find(Input).findWhere((elem) => {return elem.getElement().props.disabled == false})).toHaveLength(14);
+        expect(testForm.find(Input).findWhere((elem) => {return elem.getElement().props.disabled == false})).toHaveLength(7);
     })
     
     it('should store date in the date field', () => {
