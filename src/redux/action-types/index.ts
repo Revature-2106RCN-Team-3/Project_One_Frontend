@@ -6,5 +6,8 @@ export enum ActionType {
     SET_LOADING = 'set-password',
     AUTHENTICATED = 'authenticated',
     IS_ERROR = 'is-error',
-    SET_AUTH_LOADING = "SET_AUTH_LOADING"
+    USER_LOADING = "user-loading",
+    USER_FAIL = "user-fail",
+    USER_SUCCESS = "user-success"
+
 }
