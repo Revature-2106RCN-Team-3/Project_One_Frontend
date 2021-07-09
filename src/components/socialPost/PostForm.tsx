@@ -1,23 +1,20 @@
 import { Button, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import login from "../../LoginCognito";
-import { Route, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import SocialPostPage from "./SocialPostList";
-import { useDispatch } from "react-redux";
-import SocialPostList from "./SocialPostList";
 
 const PostForm: React.FC = () => {
   const [postText, setPostText] = useState("");
-  const dispatch = useDispatch();
+
   const history = useHistory();
   const routeChange = () => {
-    let path = "/posts";
+    let path = "/posts/added";
     history.push(path);
   };
 
   const postChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     setPostText(value);
   };
 
@@ -37,7 +34,6 @@ const PostForm: React.FC = () => {
       console.log(err);
     }
   };
-
   return (
     <div>
       <FormGroup className="mx-5">
@@ -58,4 +54,3 @@ const PostForm: React.FC = () => {
 };
 
 export default PostForm;
-
