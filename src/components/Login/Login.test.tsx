@@ -1,6 +1,6 @@
 import { describe } from '@jest/globals';
 import { shallow, ShallowWrapper } from 'enzyme';
-import { IUser } from '../../types/types';
+import { IUser } from '../../redux/types/types';
 
 describe('renders the login page without crashing', () => {
     let user: IUser;

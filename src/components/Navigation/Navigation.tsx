@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ActionType } from '../../redux/action-types';
 //import { logoutStart } from '../../redux/actions/logRegAction';
-import { IRootReducer } from '../../types/types';
+import { IRootReducer } from '../../redux/types/types';
 import logo from '../images/pics/logo.png';
 import Logout from '../Logout/Logout';
 import { useReducer } from 'react';

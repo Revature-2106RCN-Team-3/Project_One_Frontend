@@ -1,4 +1,4 @@
-import { IError } from "../../types/types";
+import { IError } from "../../redux/types/types";
 
 interface IProps {
     dispatchLogout: () => void;
