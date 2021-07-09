@@ -5,7 +5,7 @@ export const initState: ILogin = {
     username: null,
     authenticated: false,
     loading: false,
-    isError: false,
+    setError: '',
     success: ''
 }
 
@@ -34,10 +34,10 @@ const loginReducer = (state = initState, action: Authenticate) => {
                 ...state,
                 success: action.payload
             }
-        case ActionType.IS_ERROR:
+        case ActionType.SET_ERROR:
             return {
                 ...state,
-                isError: action.payload
+                error: action.payload
             }
         default:
             return state;
