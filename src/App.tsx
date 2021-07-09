@@ -30,7 +30,6 @@ function App() {
     <main className="bg-dark">
     <Navbar />
         <Switch>
-          <PublicRoute path='/posts' component={SocialPostList} />
           <PublicRoute path='/signup' component={Register} />
           <PublicRoute path='/login' component={Login} />
           <Route

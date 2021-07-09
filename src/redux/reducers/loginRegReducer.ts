@@ -1,23 +1,49 @@
 import { AuthActionType } from "../actions/logRegAction";
-import { IUser } from "../../types/types";
+import { ILogin } from "../../types/types";
 import { ActionType } from "../action-types";
 
-const initState: IUser = {
+export const initState: ILogin = {
     username: '',
-    nickname: ''
+    password: '',
+    isDisabled: true,
+    isError: false,
 }
 
-const authReducer = (state = initState, action: AuthActionType) => {
+const loginReducer = (state = initState, action: AuthActionType) => {
     switch (action.type) {
+        case ActionType.SET_USERNAME:
+            return {
+                ...state,
+                username: action.payload
+            }
+        case ActionType.SET_PASSWORD:
+            return {
+                ...state,
+                password: action.payload
+            }
+        case ActionType.SET_IS_DISABLED:
+            return {
+                ...state,
+                isDisabled: action.payload
+            }
         case ActionType.LOGIN_SUCCESS:
-            return action.payload;
-        case ActionType.LOGOUT_SUCCESS:
-            return initState;
-        case ActionType.REGISTER_SUCCESS:
-            return action.payload;
+            return {
+                ...state,
+                isError:false
+            }
+        case ActionType.LOGIN_FAILED:
+            return {
+                ...state,
+                isError: true
+            }
+        case ActionType.SET_IS_ERROR:
+            return {
+                ...state,
+                isError: action.payload
+            }
         default:
             return state;
     }
 };
 
-export default authReducer;
+export default loginReducer;

@@ -5,9 +5,11 @@ export interface IRootReducer {
     profile: IProfile;
 }
 
-export interface IUser {
+export interface ILogin {
     username: string;
-    nickname: string;
+    password: string;
+    isDisabled: boolean;
+    isError: boolean;
 } 
 
 export interface IRegister {
