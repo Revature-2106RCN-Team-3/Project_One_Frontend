@@ -17,6 +17,7 @@ export interface SignUp {
   phone: string;
   first_name: string;
   last_name:string
+
 }
 
 export interface ILogin {
