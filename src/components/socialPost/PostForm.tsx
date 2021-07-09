@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Button, Col, Form, FormGroup, Input } from "reactstrap";
-import { addPost, PostAction } from "../../redux/actions/socialPostActions";
-import PostSubmit from "./PostSubmit";
+import axios from "axios";
+import login from "../../LoginCognito";
+import { useState } from "react";
 
 const PostForm: React.FC = () => {
   const [postText, setPostText] = useState("");
@@ -11,15 +10,21 @@ const PostForm: React.FC = () => {
     const value = e.target.value.trim();
     setPostText(value);
   };
-  const dispatch = useDispatch();
-
-  const addClick = () => {
-    dispatch({
-      type: PostAction.ADD_POST,
-      payload: postText,
-    });
+  const name = async () => {
+    await login.getUserName();
+  }
+  const fetchPosts = async () => {
+    try {
+      await axios.post(
+        "http://localhost:3001/api/home/post/addpost",
+        { data: { userName: name, postText: postText } }
+      );
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+      window.location.reload();
+    }
   };
-
   return (
     <div>
       <Form>
@@ -29,16 +34,16 @@ const PostForm: React.FC = () => {
               type="textarea"
               name="text"
               id="postText"
+              value={postText}
               onChange={postChangeHandler}
               placeholder="write your post here..."
             />
-            <Button onClick={addClick}>Submit Post</Button>
+            <Button onClick={fetchPosts}>Submit Post</Button>
           </Col>
         </FormGroup>
       </Form>
     </div>
   );
-  //   return <>{renderList}</>;
 };
 
 export default PostForm;
