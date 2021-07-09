@@ -5,7 +5,6 @@ import { setPost } from "../../redux/actions/socialPostActions";
 import SocialPostComponent from "./SocialPost";
 import { RootState } from "../../redux/reducers";
 import { Col, Row } from "reactstrap";
-import UserDataForm from "../User/UserProfile";
 import PostForm from "./PostForm";
 
 const SocialPostPage: React.FC = () => {

@@ -14,7 +14,10 @@ const PostForm: React.FC = () => {
   const dispatch = useDispatch();
 
   const addClick = () => {
-    dispatch(addPost);
+    dispatch({
+      type: PostAction.ADD_POST,
+      payload: postText,
+    });
   };
 
   return (
