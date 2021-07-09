@@ -7,7 +7,7 @@ import Carousel from "../carousel";
 import './Login.css';
 import { ActionType } from "../../redux/action-types";
 import { login } from "../../redux/actions/logRegAction";
-import Login from "../../Login";
+import Login from "../../LoginCognito";
 
 const poolData = {
     UserPoolId: "us-east-2_UW3QxKzWj",
@@ -46,6 +46,7 @@ const LoginComponent: React.FC = () => {
 
     const submitHandler = async (e: FormEvent) => {
         e.preventDefault();
+        console.log(username, password);
         Login.login(username, password, false).then((signUpResult: CognitoUser) => {
 
                // Signup complete, redirect to somewhere
