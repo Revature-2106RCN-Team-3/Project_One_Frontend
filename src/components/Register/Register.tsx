@@ -75,14 +75,14 @@ const Register = (): any => {
 
              }).catch(console.error);
         /*setLoading(true);
-        await dispatch(signup({ username, password }, () => setLoading(false)));
+        await dispatch(signup({ username, password, first_name, last_name, birthday, phone }, () => setLoading(false)))
         await dispatch(CreateUser({
             "username": username,
             "password": password,
             "first_name": first_name,
             "last_name": last_name,
             "birthday": birthday,
-            "phone": phone
+            "phone": phone,
         }));
 
         if(loading === false) {
