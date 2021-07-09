@@ -1,5 +1,5 @@
 import { IPost } from "../../models/socialPostModel";
-import { IAppActions, PostAction } from "../actions/socialPostActions";
+import { PostAction } from "../actions/socialPostActions";
 
 export interface IAppState {
     posts: IPost[];
