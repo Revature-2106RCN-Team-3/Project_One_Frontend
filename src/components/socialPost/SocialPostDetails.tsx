@@ -12,11 +12,11 @@ const SocialPostDetails: React.FC = () => {
     let post = useSelector((state: RootState) => state.allPosts.posts);
     const {userName, postText, parentPostId, post_date_time, mainPost, like, dislike} = post;
     const dispatch= useDispatch();
-    const fetchPostDetail = async (postId: string, userName: string) => {
+    const fetchPostDetail = async () => {
         try{
         const response = await axios
         .get("http://localhost:3000/api/home/post/getpost",{data: {userName: post.userName, postId: post.postId}})
-        dispatch(selectedPost(response.data))
+        dispatch(selectedPost(response.data.post.Items))
     } catch(err) {
         console.log(err)
     }
@@ -24,11 +24,11 @@ const SocialPostDetails: React.FC = () => {
         
     }
     useEffect(() =>{
-        if(socialPostId && socialPostId !== "") fetchPostDetail(socialPostId);
+        if(socialPostId && socialPostId !== "") fetchPostDetail();
         return() => {
             dispatch(removeSelectedPost());
         };
-    }, [socialPostId]);
+    }, []);
     return(
         <div></div>
     );

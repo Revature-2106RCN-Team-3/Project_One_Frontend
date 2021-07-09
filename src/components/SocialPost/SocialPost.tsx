@@ -44,19 +44,17 @@ const SocialPostComponent: React.FC = () => {
         like,
         dislikes,
       } = post;
+
       return (
         <div>
           <Row>
-            <Col sm="12" md={{ size: 6, offset: 3 }}>
-              <Card>
-                <CardHeader></CardHeader>
-                
+            <Col sm="auto" md={{ size: 12, offset: 0 }}>
+              <Card>              
                 <CardBody>
                   <CardTitle tag="h5">{username}</CardTitle>
-                  <CardText type="date"> {post_date_time}</CardText>
+                  <CardText></CardText>
                   <CardText>{post_text}</CardText>
                 </CardBody>
-                
                 <CardFooter>
                 <Link to={`/posts/${parent_post_id}/${post_id}`}>
                   <Button>Comments</Button>

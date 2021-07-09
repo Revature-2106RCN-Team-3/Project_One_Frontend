@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -21,24 +21,30 @@ import {
 import { RootState } from "../../redux/reducers";
 import SocialPostPage from "./SocialCommentsList";
 import SocialCommentsPage from "./SocialCommentsList";
-import { PostAction } from "../../redux/actions/socialPostActions";
-import PostSubmit from "./PostSubmit";
-import { IPost } from "../../models/socialPostModel";
+import { PostAction, setPost } from "../../redux/actions/socialPostActions";
+import axios from "axios";
 
 const PostForm: React.FC = () => {
-  const [postText, setPostText] = useState('');
-
-  const postChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
-    setPostText(value)
-}
-const dispatch = useDispatch();
+  const posts = useSelector((state: RootState) => state.allPosts.posts);
+  const dispatch = useDispatch();
+  const fetchPosts = async () => {
+    try{
+    const response = await axios
+      .get("http://localhost:3001/api/home/post/getall")
+    dispatch(setPost(response.data.posts.Items));
+    }catch(err){
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+  console.log(posts)
   
-
-const addClick = () => {
+  const addClick = () => {
     dispatch({
       type: PostAction.ADD_POST,
-      payload: {postText},
+      payload: {},
     });
   };
 
@@ -50,8 +56,7 @@ const addClick = () => {
             <Input
               type="textarea"
               name="text"
-              id="postText"
-              onChange={postChangeHandler}
+              id="exampleText"
               placeholder="write your post here..."
             />
             <Button onClick={addClick}>Submit Post</Button>

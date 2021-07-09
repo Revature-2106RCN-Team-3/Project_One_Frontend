@@ -34,6 +34,11 @@ export const getcomments = (posts: IPost) => (<const>{
     payload: posts,
 });
 
+export const addPost = (posts: IPost) => (<const>{
+    type: PostAction.ADD_POST,
+    payload: posts,
+});
+
 export const selectedPost = (postId: string) => {
     return{ 
         type: PostAction.SELECT_POST,
