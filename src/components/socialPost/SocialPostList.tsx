@@ -11,29 +11,29 @@ const SocialPostPage: React.FC = () => {
   const posts = useSelector((state: RootState) => state.allPosts.posts);
   const dispatch = useDispatch();
   const fetchPosts = async () => {
-    try{
-    const response = await axios
-      .get("http://localhost:3001/api/home/post/getall")
-    dispatch(setPost(response.data.posts.Items));
-    }catch(err){
+    try {
+      const response = await axios.get(
+        "http://localhost:3001/api/home/post/getall"
+      );
+      dispatch(setPost(response.data.posts.Items));
+    } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
     fetchPosts();
   }, []);
-  console.log(posts)
+  console.log(posts);
   return (
     <div>
       <Row>
-      <Col>
-      <PostForm/>
-      </Col>
-      <Col>
-      <SocialPostComponent />
-      </Col>
-      <Col>
-      </Col>
+        <Col>
+          <PostForm />
+        </Col>
+        <Col>
+          <SocialPostComponent />
+        </Col>
+        <Col></Col>
       </Row>
     </div>
   );
