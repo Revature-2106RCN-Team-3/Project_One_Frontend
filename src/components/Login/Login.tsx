@@ -1,41 +1,43 @@
-import React, { FormEvent, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginStart } from '../../redux/actions/logRegAction';
+import React, { FormEvent, useState, useReducer } from "react";
 import './Login.css';
 import Carousel from "../carousel";
-import { setAuthError } from "../../redux/actions/errorAction";
+import  loginReducer, {initState} from "../../redux/reducers/loginRegReducer";
+import { ActionType } from "../../redux/action-types";
 
 const Login: React.FC = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [isPasswordVisible, setPasswordVisible] = useState(false);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        return () => {
-            dispatch(setAuthError(null));
-        }
-        //eslint-disable-next-line 
-    }, []);
+    const [state, dispatch] = useReducer(loginReducer, initState);
 
     const usernameChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         //get rid of whitespaces
-        const value = e.target.value.trim();
-        setUsername(value);
-    }
+        dispatch({
+            type:ActionType.SET_USERNAME,
+            payload: e.target.value
+        });
+    };
 
     const passwordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setPassword(value);
-    }
+        dispatch({
+            type:ActionType.SET_PASSWORD,
+            payload: e.target.value
+        });
+    };
 
     const submitHandler = async (e: FormEvent) => {
         e.preventDefault();
 
-        if(username && password) {
+        if(state.username && state.password) {
             //way to authenticate user to go to their dashboard
-            dispatch(loginStart(username, password));
-        }
+            dispatch({
+                type: ActionType.LOGIN_SUCCESS,
+                payload: 'Logged in'
+            });
+        } else {
+            dispatch({
+                type:ActionType.LOGIN_FAILED,
+                payload: 'Incorrect username/password'
+            });
+        };
     }
 
 
@@ -58,7 +60,7 @@ const Login: React.FC = () => {
                             type="text"
                             id="username"
                             autoComplete="username"
-                            value={username}
+                            value={state.username}
                             onChange={usernameChangeHandler}
                             required
                             />
@@ -76,7 +78,7 @@ const Login: React.FC = () => {
                             autoComplete="current-password"
                             aria-describedby="eye"
                             onChange={passwordChangeHandler}
-                            value={password}
+                            value={state.password}
                             required
                             />
                             </div>
