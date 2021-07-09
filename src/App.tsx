@@ -29,7 +29,6 @@ function App() {
     <main className="bg-dark">
     <Navbar />
         <Switch>
-          <PublicRoute path={'/posts'} component={SocialPostList} />
           <PublicRoute path='/signup' component={Register} />
           <PublicRoute path='/login' component={Login} />
           <Route
@@ -37,7 +36,7 @@ function App() {
             exact
             render={(props:any) => <Login key={Date.now()} {...props} />}
           />
-          {/* <Protected path={'/posts'} component={SocialPostList} /> */}
+          <Protected path={'/posts'} component={SocialPostList} />
         </Switch>
     </main>
   );
