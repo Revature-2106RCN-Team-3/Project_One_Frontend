@@ -7,7 +7,7 @@ import SocialPostPage from "./SocialPostList";
 import { useDispatch } from "react-redux";
 import SocialPostList from "./SocialPostList";
 
-const PostForm: React.FC = () => {
+const PostForm: React.FC<{onPost: () => void}> = (props: any) => {
   const [postText, setPostText] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -33,6 +33,7 @@ const PostForm: React.FC = () => {
         }
       );
       routeChange();
+      props.onPost();
     } catch (err) {
       console.log(err);
     }
