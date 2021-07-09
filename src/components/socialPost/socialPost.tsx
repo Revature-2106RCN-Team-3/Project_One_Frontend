@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   Card,
-  CardHeader,
   CardBody,
   CardTitle,
   CardText,
@@ -11,11 +10,8 @@ import {
   CardFooter,
   Row,
   Col,
-  UncontrolledCollapse,
 } from "reactstrap";
 import { RootState } from "../../redux/reducers";
-import SocialPostPage from "./SocialCommentsList";
-import SocialCommentsPage from "./SocialCommentsList";
 
 const SocialPostComponent: React.FC = () => {
   const posts = useSelector((state: RootState) => state.allPosts.posts);
@@ -49,16 +45,16 @@ const SocialPostComponent: React.FC = () => {
         <div>
           <Row>
             <Col sm="auto" md={{ size: 12, offset: 0 }}>
-              <Card>              
+              <Card>
                 <CardBody>
                   <CardTitle tag="h5">{username}</CardTitle>
                   <CardText></CardText>
                   <CardText>{post_text}</CardText>
                 </CardBody>
                 <CardFooter>
-                <Link to={`/posts/${parent_post_id}/${post_id}`}>
-                  <Button>Comments</Button>
-                </Link>
+                  <Link to={`/posts/${parent_post_id}/${post_id}`}>
+                    <Button>Comments</Button>
+                  </Link>
                 </CardFooter>
               </Card>
             </Col>

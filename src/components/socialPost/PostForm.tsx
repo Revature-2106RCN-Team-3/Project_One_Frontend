@@ -1,44 +1,20 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  CardText,
-  Button,
-  CardFooter,
-  Row,
-  Col,
-  UncontrolledCollapse,
-  Form,
-  FormGroup,
-  FormText,
-  Input,
-  Label,
-} from "reactstrap";
-import { RootState } from "../../redux/reducers";
-import SocialPostPage from "./SocialCommentsList";
-import SocialCommentsPage from "./SocialCommentsList";
-import { PostAction } from "../../redux/actions/socialPostActions";
+import { useDispatch } from "react-redux";
+import { Button, Col, Form, FormGroup, Input } from "reactstrap";
+import { addPost, PostAction } from "../../redux/actions/socialPostActions";
 import PostSubmit from "./PostSubmit";
-import { IPost } from "../../models/socialPostModel";
 
 const PostForm: React.FC = () => {
-  const [postText, setPostText] = useState('');
+  const [postText, setPostText] = useState("");
 
   const postChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
-    setPostText(value)
-}
-const dispatch = useDispatch();
+    setPostText(value);
+  };
+  const dispatch = useDispatch();
 
-const addClick = () => {
-    dispatch({
-      type: PostAction.ADD_POST,
-      payload: {postText},
-    });
+  const addClick = () => {
+    dispatch(addPost);
   };
 
   return (

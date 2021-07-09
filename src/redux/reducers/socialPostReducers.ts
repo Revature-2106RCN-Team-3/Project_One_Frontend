@@ -13,6 +13,13 @@ export const socialPostReducer = (state = initialState, action: {type: any, payl
     switch(action.type){
         case PostAction.SET_POST:
             return {...state, posts: action.payload};
+        default:
+            return state;
+    }
+}
+
+export const addPostReducer = (state = initialState, action: {type: any, payload: any }) => {
+    switch(action.type){
         case PostAction.ADD_POST:
             return {...state, posts: action.payload}
         default:
